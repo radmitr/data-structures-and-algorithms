@@ -178,7 +178,7 @@ public class GraphAdjacencyMatrix {
         for (int i = 0; i < matrixSize; i++) {
             if (adjacencyMatrix[idx][i] > 0) {
                 n++;
-            };
+            }
         }
         int[] indexes = new int[n];
 
@@ -186,7 +186,7 @@ public class GraphAdjacencyMatrix {
         for (int i = 0; i < matrixSize; i++) {
             if (adjacencyMatrix[idx][i] > 0) {
                 indexes[insertIndex++] = i;
-            };
+            }
         }
         return indexes;
     }
