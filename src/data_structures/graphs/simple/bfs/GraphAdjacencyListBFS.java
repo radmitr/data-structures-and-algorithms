@@ -133,13 +133,13 @@ public class GraphAdjacencyListBFS {
 	}
 
 	public void bfs(Node startNode) {
-		Deque<Node> nodeDeq = new ArrayDeque<>();
-		nodeDeq.push(startNode);
-		while (nodeDeq.size() > 0) {
-			Node currentNode = nodeDeq.poll();
+		Deque<Node> nodeDeque = new ArrayDeque<>();
+		nodeDeque.push(startNode);
+		while (nodeDeque.size() > 0) {
+			Node currentNode = nodeDeque.poll();
 			for (Node node : currentNode.adjacentNodes) {
 				if (node.color == 0) {
-					nodeDeq.push(node);
+					nodeDeque.push(node);
 				}
 			}
 			currentNode.color = 1;
@@ -158,9 +158,11 @@ public class GraphAdjacencyListBFS {
 		boolean result = true;
 		repaintNodesToWhiteColor();
 		for (String nodeId : nodes.keySet()) {
+            // запускаем BFS на первом попавшемся ключе nodeId из множестве и выходим из цикла
 			bfs(nodes.get(nodeId));
 			break;
 		}
+        // если хотя бы одна вершина осталась белая, то граф несвязный
 		for (String nodeId : nodes.keySet()) {
 			if (nodes.get(nodeId).color == 0) {
 				result = false;
@@ -206,12 +208,11 @@ public class GraphAdjacencyListBFS {
 		graph.addEdge("c", "b");
 
 		System.out.println(graph);
-
 		System.out.println(graph.isConnectedGraph());
+        System.out.println();
+
 		graph.removeEdge("a", "d");
-
 		System.out.println(graph);
-
 		System.out.println(graph.isConnectedGraph());
 	}
 }
