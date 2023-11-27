@@ -38,7 +38,7 @@ import java.util.Arrays;
 public class CountingSort {
 
 	public static void main(String[] args) {
-		int[] sort = { 5, 0, -2, 7, 3 };
+		int[] sort = { 5, 0, -2, 7, 3, -2 };
 		System.out.println(Arrays.toString(sort));
 
 		sort(sort);
