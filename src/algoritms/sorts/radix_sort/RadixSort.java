@@ -30,7 +30,7 @@ import java.util.Arrays;
  *
  * 1) Определяем максимальное количество разрядов в ключах сортировки (в дальнейшем k).
  *    Определяем способ выравнивания ключей сортировки (LSD или MSD).
- *    
+ *
  * 2) Выполняем последовательно k раз сортировку используя алгоритм распределяющего подсчета,
  *    где в качестве ключа сортировки используется значение соответствующего разряда.
  * ------------------------------------------------------------------------------------------------
@@ -66,15 +66,15 @@ public class RadixSort {
 		return result;
 	}
 
-	public static int getDigit(int number, int devider) {
-		return number % (devider * 10) / (devider);
+	public static int getDigit(int number, int divider) {
+		return number % (divider * 10) / (divider);
 	}
 
-	public static int[] findMinMaxKey(int[] numbers, int devider) {
-		int minKey = getDigit(numbers[0], devider);
+	public static int[] findMinMaxKey(int[] numbers, int divider) {
+		int minKey = getDigit(numbers[0], divider);
 		int maxKey = minKey;
 		for (int number : numbers) {
-			int digit = getDigit(number, devider);
+			int digit = getDigit(number, divider);
 			if (digit < minKey) {
 				minKey = digit;
 			}
@@ -85,14 +85,14 @@ public class RadixSort {
 		return new int[] { minKey, maxKey };
 	}
 
-	public static int[] countSort(int[] numbers, int devider) {
-		int[] minMaxKey = findMinMaxKey(numbers, devider);
+	public static int[] countSort(int[] numbers, int divider) {
+		int[] minMaxKey = findMinMaxKey(numbers, divider);
 		int minKey = minMaxKey[0];
 		int maxKey = minMaxKey[1];
 		int n = maxKey - minKey + 1;
 		int[] support = new int[n];
 		for (int number : numbers) {
-			support[getDigit(number, devider) - minKey] += 1;
+			support[getDigit(number, divider) - minKey] += 1;
 		}
 		int size = numbers.length;
 		for (int i = support.length - 1; i >= 0; i--) {
@@ -101,18 +101,18 @@ public class RadixSort {
 		}
 		int[] result = new int[numbers.length];
 		for (int number : numbers) {
-			result[support[getDigit(number, devider) - minKey]] = number;
-			support[getDigit(number, devider) - minKey] += 1;
+			result[support[getDigit(number, divider) - minKey]] = number;
+			support[getDigit(number, divider) - minKey] += 1;
 		}
 		return result;
 	}
 
 	public static int[] radixSort(int[] numbers) {
 		int maxNumberOfDigits = findMaxNumberOfDigits(numbers);
-		int devider = 1;
+		int divider = 1;
 		for (int i = 0; i < maxNumberOfDigits; i++) {
-			numbers = countSort(numbers, devider);
-			devider *= 10;
+			numbers = countSort(numbers, divider);
+			divider *= 10;
 		}
 		return numbers;
 	}
