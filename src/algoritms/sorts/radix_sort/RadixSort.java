@@ -1,10 +1,13 @@
 package algoritms.sorts.radix_sort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * ------------------------------------------------------------------------------------------------
  * Поразрядная сортировка
+ * ------------------------------------------------------------------------------------------------
+ * !!! Вариация поразрядной сортировки только для положительных целых чисел !!!
  * ------------------------------------------------------------------------------------------------
  * Описание сути алгоритма
  *
@@ -34,15 +37,43 @@ import java.util.Arrays;
  * 2) Выполняем последовательно k раз сортировку используя алгоритм распределяющего подсчета,
  *    где в качестве ключа сортировки используется значение соответствующего разряда.
  * ------------------------------------------------------------------------------------------------
+ * !!! Вариация поразрядной сортировки только для положительных целых чисел !!!
+ * ------------------------------------------------------------------------------------------------
  * <a href="">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
 public class RadixSort {
 
 	public static void main(String[] args) {
+        // 1 - numbers
 		int[] numbers = { 121, 5, 24, 9, 32 };
+        System.out.println(Arrays.toString(numbers));
+
 		int[] result = radixSort(numbers);
 		System.out.println(Arrays.toString(result));
+        System.out.println();
+
+        // 2 - numbers2
+        int[] numbers2 = { 121, 5, 24, 9, 32, 5, 34, 67, 150, 20, 67, 82, 83, 6, 0, 3, 58, 4397, 22, 24, 1020 };
+        System.out.println(Arrays.toString(numbers2));
+
+        int[] result2 = radixSort(numbers2);
+        System.out.println(Arrays.toString(result2));
+        System.out.println();
+
+        // 3 - numbers3
+        int arraySize = 10_000;
+        int bound = 50_000;
+        int[] numbers3 = new int[arraySize];
+        Random random = new Random();
+
+        for (int i = 0; i < numbers3.length; i++) {
+            numbers3[i] = random.nextInt(bound);
+        }
+        System.out.println(Arrays.toString(numbers3));
+
+        int[] result3 = radixSort(numbers3);
+        System.out.println(Arrays.toString(result3));
 	}
 
 	public static int numberOfDigits(int number) {
@@ -85,14 +116,14 @@ public class RadixSort {
 		return new int[] { minKey, maxKey };
 	}
 
-	public static int[] countSort(int[] numbers, int divider) {
+	public static int[] distributionCountingSort(int[] numbers, int divider) {
 		int[] minMaxKey = findMinMaxKey(numbers, divider);
 		int minKey = minMaxKey[0];
 		int maxKey = minMaxKey[1];
 		int n = maxKey - minKey + 1;
 		int[] support = new int[n];
 		for (int number : numbers) {
-			support[getDigit(number, divider) - minKey] += 1;
+			support[getDigit(number, divider) - minKey]++;
 		}
 		int size = numbers.length;
 		for (int i = support.length - 1; i >= 0; i--) {
@@ -102,7 +133,7 @@ public class RadixSort {
 		int[] result = new int[numbers.length];
 		for (int number : numbers) {
 			result[support[getDigit(number, divider) - minKey]] = number;
-			support[getDigit(number, divider) - minKey] += 1;
+			support[getDigit(number, divider) - minKey]++;
 		}
 		return result;
 	}
@@ -111,7 +142,7 @@ public class RadixSort {
 		int maxNumberOfDigits = findMaxNumberOfDigits(numbers);
 		int divider = 1;
 		for (int i = 0; i < maxNumberOfDigits; i++) {
-			numbers = countSort(numbers, divider);
+			numbers = distributionCountingSort(numbers, divider);
 			divider *= 10;
 		}
 		return numbers;
