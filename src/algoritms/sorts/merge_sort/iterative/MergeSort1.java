@@ -30,10 +30,20 @@ import java.util.Arrays;
 public class MergeSort1 {
 
 	public static void main(String[] args) {
+        // 1 - array
+		int[] array = { 5, 0, -2, 7, 3 };
+        System.out.println(Arrays.toString(array));
 
-		int[] array = new int[] { 5, 0, -2, 7, 3 };
 		sort(array);
 		System.out.println(Arrays.toString(array));
+        System.out.println();
+
+        // 2 - array2
+        int[] array2 = { 5, 0, -2, 7, 3, -40, 30, -24, 15, 7, 8, 9, 8, 7, 1 };
+        System.out.println(Arrays.toString(array2));
+
+        sort(array2);
+        System.out.println(Arrays.toString(array2));
 	}
 
 	public static void sort(int[] array) {
