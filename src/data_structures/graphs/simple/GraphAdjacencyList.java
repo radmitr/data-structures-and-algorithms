@@ -198,12 +198,12 @@ public class GraphAdjacencyList {
         System.out.println(graph);
 
         // 4 - remove edge "b-c"
-//		graph.removeEdge("b", "c");
-//		System.out.println(graph);
+//        graph.removeEdge("b", "c");
+//        System.out.println(graph);
 
         // 5 - remove node "b"
-//		graph.removeNode("b");
-//		System.out.println(graph);
+//        graph.removeNode("b");
+//        System.out.println(graph);
 
         // 6 - are they adjacent?
         System.out.println(graph.isAdjacent("b", "c"));

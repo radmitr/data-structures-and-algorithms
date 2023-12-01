@@ -116,20 +116,20 @@ import java.math.BigInteger;
  */
 public class Factorial {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 //        for (int i = 0; i <= 1500; i++) {
 //            System.out.printf("fact(%d) = %d\n", i, bigFactorial(i));
 //        }
 
-		// VM options: -Xss100M
-		int number = 50000; // 11828 - work, 11829 - StackOverflowError
-		System.out.println(factorial(number));
-	}
+        // VM options: -Xss100M
+        int number = 50000; // 11828 - work, 11829 - StackOverflowError
+        System.out.println(factorial(number));
+    }
 
-	public static BigInteger factorial(int number) {
-		if (number <= 1) {
-			return BigInteger.ONE;
-		}
-		return BigInteger.valueOf(number).multiply(factorial(number - 1));
-	}
+    public static BigInteger factorial(int number) {
+        if (number <= 1) {
+            return BigInteger.ONE;
+        }
+        return BigInteger.valueOf(number).multiply(factorial(number - 1));
+    }
 }

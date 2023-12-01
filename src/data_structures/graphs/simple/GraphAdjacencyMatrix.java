@@ -245,8 +245,8 @@ public class GraphAdjacencyMatrix {
         System.out.println(graph);
 
         // 5 - remove edge "b-c"
-		graph.removeEdge("b", "c");
-		System.out.println(graph);
+        graph.removeEdge("b", "c");
+        System.out.println(graph);
 
         // 6 - remove node "c"
 //        graph.removeNode("c");

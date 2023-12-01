@@ -28,13 +28,13 @@ import java.util.Arrays;
  */
 public class QuickSortLomuto {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         // 1 - array
-		int[] array = { 0, 5, -2, 7, 3 };
+        int[] array = { 0, 5, -2, 7, 3 };
         System.out.println(Arrays.toString(array));
 
-		quickSort(array);
-		System.out.println(Arrays.toString(array));
+        quickSort(array);
+        System.out.println(Arrays.toString(array));
         System.out.println();
 
         // 2 - array2
@@ -51,37 +51,37 @@ public class QuickSortLomuto {
 
         quickSort(array3);
         System.out.println(Arrays.toString(array3));
-	}
+    }
 
-	public static void quickSort(int[] array) {
-		quickSort(array, 0, array.length - 1);
-	}
+    public static void quickSort(int[] array) {
+        quickSort(array, 0, array.length - 1);
+    }
 
-	public static void quickSort(int[] array, int lo, int hi) {
-		if (lo >= hi) {
-			return;
-		}
-		int p = partition(array, lo, hi);
-		quickSort(array, lo, p - 1);
-		quickSort(array, p + 1, hi);
-	}
+    public static void quickSort(int[] array, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int p = partition(array, lo, hi);
+        quickSort(array, lo, p - 1);
+        quickSort(array, p + 1, hi);
+    }
 
-	public static int partition(int[] array, int lo, int hi) {
-		int j = lo;
-		int supportElement = array[lo];
-		for (int i = lo + 1; i <= hi; i++) {
-			if (array[i] < supportElement) {
+    public static int partition(int[] array, int lo, int hi) {
+        int j = lo;
+        int supportElement = array[lo];
+        for (int i = lo + 1; i <= hi; i++) {
+            if (array[i] < supportElement) {
                 j++;
-				swap(array, i, j);
-			}
-		}
-		swap(array, lo, j);
-		return j;
-	}
+                swap(array, i, j);
+            }
+        }
+        swap(array, lo, j);
+        return j;
+    }
 
-	public static void swap(int[] array, int i, int j) {
-		int temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
+    public static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
 }

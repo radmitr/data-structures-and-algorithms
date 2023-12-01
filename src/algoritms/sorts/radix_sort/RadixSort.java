@@ -44,13 +44,13 @@ import java.util.Random;
  */
 public class RadixSort {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         // 1 - numbers
-		int[] numbers = { 121, 5, 24, 9, 32 };
+        int[] numbers = { 121, 5, 24, 9, 32 };
         System.out.println(Arrays.toString(numbers));
 
-		int[] result = radixSort(numbers);
-		System.out.println(Arrays.toString(result));
+        int[] result = radixSort(numbers);
+        System.out.println(Arrays.toString(result));
         System.out.println();
 
         // 2 - numbers2
@@ -74,77 +74,77 @@ public class RadixSort {
 
         int[] result3 = radixSort(numbers3);
         System.out.println(Arrays.toString(result3));
-	}
+    }
 
-	public static int numberOfDigits(int number) {
-		int i = 1;
-		long n = 10;
-		while (number >= n) {
-			i++;
-			n *= 10;
-		}
-		return i;
-	}
+    public static int numberOfDigits(int number) {
+        int i = 1;
+        long n = 10;
+        while (number >= n) {
+            i++;
+            n *= 10;
+        }
+        return i;
+    }
 
-	public static int findMaxNumberOfDigits(int[] numbers) {
-		int result = 1;
-		for (int i = 0; i < numbers.length; i++) {
-			int digits = numberOfDigits(numbers[i]);
-			if (digits > result) {
-				result = digits;
-			}
-		}
-		return result;
-	}
+    public static int findMaxNumberOfDigits(int[] numbers) {
+        int result = 1;
+        for (int i = 0; i < numbers.length; i++) {
+            int digits = numberOfDigits(numbers[i]);
+            if (digits > result) {
+                result = digits;
+            }
+        }
+        return result;
+    }
 
-	public static int getDigit(int number, int divider) {
-		return number % (divider * 10) / (divider);
-	}
+    public static int getDigit(int number, int divider) {
+        return number % (divider * 10) / (divider);
+    }
 
-	public static int[] findMinMaxKey(int[] numbers, int divider) {
-		int minKey = getDigit(numbers[0], divider);
-		int maxKey = minKey;
-		for (int number : numbers) {
-			int digit = getDigit(number, divider);
-			if (digit < minKey) {
-				minKey = digit;
-			}
-			if (digit > maxKey) {
-				maxKey = digit;
-			}
-		}
-		return new int[] { minKey, maxKey };
-	}
+    public static int[] findMinMaxKey(int[] numbers, int divider) {
+        int minKey = getDigit(numbers[0], divider);
+        int maxKey = minKey;
+        for (int number : numbers) {
+            int digit = getDigit(number, divider);
+            if (digit < minKey) {
+                minKey = digit;
+            }
+            if (digit > maxKey) {
+                maxKey = digit;
+            }
+        }
+        return new int[] { minKey, maxKey };
+    }
 
-	public static int[] distributionCountingSort(int[] numbers, int divider) {
-		int[] minMaxKey = findMinMaxKey(numbers, divider);
-		int minKey = minMaxKey[0];
-		int maxKey = minMaxKey[1];
-		int n = maxKey - minKey + 1;
-		int[] support = new int[n];
-		for (int number : numbers) {
-			support[getDigit(number, divider) - minKey]++;
-		}
-		int size = numbers.length;
-		for (int i = support.length - 1; i >= 0; i--) {
-			size -= support[i];
-			support[i] = size;
-		}
-		int[] result = new int[numbers.length];
-		for (int number : numbers) {
-			result[support[getDigit(number, divider) - minKey]] = number;
-			support[getDigit(number, divider) - minKey]++;
-		}
-		return result;
-	}
+    public static int[] distributionCountingSort(int[] numbers, int divider) {
+        int[] minMaxKey = findMinMaxKey(numbers, divider);
+        int minKey = minMaxKey[0];
+        int maxKey = minMaxKey[1];
+        int n = maxKey - minKey + 1;
+        int[] support = new int[n];
+        for (int number : numbers) {
+            support[getDigit(number, divider) - minKey]++;
+        }
+        int size = numbers.length;
+        for (int i = support.length - 1; i >= 0; i--) {
+            size -= support[i];
+            support[i] = size;
+        }
+        int[] result = new int[numbers.length];
+        for (int number : numbers) {
+            result[support[getDigit(number, divider) - minKey]] = number;
+            support[getDigit(number, divider) - minKey]++;
+        }
+        return result;
+    }
 
-	public static int[] radixSort(int[] numbers) {
-		int maxNumberOfDigits = findMaxNumberOfDigits(numbers);
-		int divider = 1;
-		for (int i = 0; i < maxNumberOfDigits; i++) {
-			numbers = distributionCountingSort(numbers, divider);
-			divider *= 10;
-		}
-		return numbers;
-	}
+    public static int[] radixSort(int[] numbers) {
+        int maxNumberOfDigits = findMaxNumberOfDigits(numbers);
+        int divider = 1;
+        for (int i = 0; i < maxNumberOfDigits; i++) {
+            numbers = distributionCountingSort(numbers, divider);
+            divider *= 10;
+        }
+        return numbers;
+    }
 }

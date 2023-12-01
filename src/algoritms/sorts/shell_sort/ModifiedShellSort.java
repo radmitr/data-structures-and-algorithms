@@ -86,19 +86,19 @@ public class ModifiedShellSort {
         System.out.println(Arrays.toString(array2));
     }
 
-	public static void shellSort(int[] array, StepGenerator stepGen) {
-		int step = stepGen.nextStep();
-		while (step > 0) {
-			for (int i = step; i < array.length; i++) {
-				for (int j = i; j >= step && array[j] < array[j - step]; j -= step) {
-					int temp = array[j];
-					array[j] = array[j - step];
-					array[j - step] = temp;
-				}
-			}
-			step = stepGen.nextStep();
-		}
-	}
+    public static void shellSort(int[] array, StepGenerator stepGen) {
+        int step = stepGen.nextStep();
+        while (step > 0) {
+            for (int i = step; i < array.length; i++) {
+                for (int j = i; j >= step && array[j] < array[j - step]; j -= step) {
+                    int temp = array[j];
+                    array[j] = array[j - step];
+                    array[j - step] = temp;
+                }
+            }
+            step = stepGen.nextStep();
+        }
+    }
 }
 
 interface StepGenerator {

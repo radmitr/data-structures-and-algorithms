@@ -15,7 +15,7 @@ import java.util.Arrays;
  * он шагает на один горшок вперёд, иначе он меняет их местами и шагает на один горшок назад.
  * Граничные условия: если нет предыдущего горшка, он шагает вперёд; если нет следующего горшка,
  * он закончил.
- * 																					Дик Грун
+ *                                                                                     Дик Грун
  * ------------------------------------------------------------------------------------------------
  * Сведение о алгоритме
  *
@@ -47,31 +47,31 @@ import java.util.Arrays;
  */
 public class GnomeSort {
 
-	public static void main(String[] args) {
-		int[] array = { 5, 0, -2, 7, 3 };
-		System.out.println(Arrays.toString(array));
+    public static void main(String[] args) {
+        int[] array = { 5, 0, -2, 7, 3 };
+        System.out.println(Arrays.toString(array));
 
-		gnomeSort(array);
-		System.out.println(Arrays.toString(array));
-	}
+        gnomeSort(array);
+        System.out.println(Arrays.toString(array));
+    }
 
-	public static void gnomeSort(int[] array) {
-		int index = 1;
-		int i = 0;
-		while (i < array.length - 1) {
-			if (array[i] <= array[i + 1]) {
-				i = index;
-				index += 1;
-			} else {
-				int temp = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = temp;
-				i = i - 1;
-				if (i < 0) {
-					i = index;
-					index += 1;
-				}
-			}
-		}
-	}
+    public static void gnomeSort(int[] array) {
+        int index = 1;
+        int i = 0;
+        while (i < array.length - 1) {
+            if (array[i] <= array[i + 1]) {
+                i = index;
+                index += 1;
+            } else {
+                int temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+                i = i - 1;
+                if (i < 0) {
+                    i = index;
+                    index += 1;
+                }
+            }
+        }
+    }
 }

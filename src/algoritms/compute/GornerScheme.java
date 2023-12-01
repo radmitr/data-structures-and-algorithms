@@ -34,22 +34,22 @@ public class GornerScheme {
         System.out.println(result);
 
         System.out.println(Arrays.toString(calculateQuotientPolynomial(polyCoeff, 2)));
-	}
+    }
 
-	public static double gornerScheme(double[] polyCoeff, double c) {
-		double result = polyCoeff[0];
-		for (int i = 0; i < polyCoeff.length - 1; i++) {
-			result = result * c + polyCoeff[i + 1];
-		}
-		return result;
-	}
+    public static double gornerScheme(double[] polyCoeff, double c) {
+        double result = polyCoeff[0];
+        for (int i = 0; i < polyCoeff.length - 1; i++) {
+            result = result * c + polyCoeff[i + 1];
+        }
+        return result;
+    }
 
-	public static double[] calculateQuotientPolynomial(double[] polyCoeff, double c) {
-		double[] coeff = new double[polyCoeff.length - 1];
-		coeff[0] = polyCoeff[0];
-		for (int i = 1; i < coeff.length; i++) {
-			coeff[i] = c * coeff[i - 1] + polyCoeff[i];
-		}
-		return coeff;
-	}
+    public static double[] calculateQuotientPolynomial(double[] polyCoeff, double c) {
+        double[] coeff = new double[polyCoeff.length - 1];
+        coeff[0] = polyCoeff[0];
+        for (int i = 1; i < coeff.length; i++) {
+            coeff[i] = c * coeff[i - 1] + polyCoeff[i];
+        }
+        return coeff;
+    }
 }

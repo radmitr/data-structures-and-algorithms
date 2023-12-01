@@ -29,13 +29,13 @@ import java.util.Arrays;
  */
 public class MergeSort1 {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         // 1 - array
-		int[] array = { 5, 0, -2, 7, 3 };
+        int[] array = { 5, 0, -2, 7, 3 };
         System.out.println(Arrays.toString(array));
 
         mergeSort(array);
-		System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
         System.out.println();
 
         // 2 - array2
@@ -44,38 +44,38 @@ public class MergeSort1 {
 
         mergeSort(array2);
         System.out.println(Arrays.toString(array2));
-	}
+    }
 
-	public static void mergeSort(int[] array) {
-		int[] supportArray = Arrays.copyOf(array, array.length);
-		int n = array.length;
-		for (int size = 1; size < n; size *= 2) {
-			for (int j = 0; j < n - size; j += 2 * size) {
-				merge(array, supportArray, j, j + size - 1, j + size, Math.min(j + 2 * size - 1, n - 1));
-			}
-		}
-	}
+    public static void mergeSort(int[] array) {
+        int[] supportArray = Arrays.copyOf(array, array.length);
+        int n = array.length;
+        for (int size = 1; size < n; size *= 2) {
+            for (int j = 0; j < n - size; j += 2 * size) {
+                merge(array, supportArray, j, j + size - 1, j + size, Math.min(j + 2 * size - 1, n - 1));
+            }
+        }
+    }
 
-	public static void merge(int[] array, int[] supportArray, int ls, int le, int rs, int re) {
-		for (int i = ls; i <= re; i++) {
-			supportArray[i] = array[i];
-		}
-		int l = ls;
-		int r = rs;
-		for (int i = ls; i <= re; i++) {
-			if (l > le) {
-				array[i] = supportArray[r];
-				r++;
-			} else if (r > re) {
-				array[i] = supportArray[l];
-				l++;
-			} else if (supportArray[l] < supportArray[r]) {
-				array[i] = supportArray[l];
-				l++;
-			} else {
-				array[i] = supportArray[r];
-				r++;
-			}
-		}
-	}
+    public static void merge(int[] array, int[] supportArray, int ls, int le, int rs, int re) {
+        for (int i = ls; i <= re; i++) {
+            supportArray[i] = array[i];
+        }
+        int l = ls;
+        int r = rs;
+        for (int i = ls; i <= re; i++) {
+            if (l > le) {
+                array[i] = supportArray[r];
+                r++;
+            } else if (r > re) {
+                array[i] = supportArray[l];
+                l++;
+            } else if (supportArray[l] < supportArray[r]) {
+                array[i] = supportArray[l];
+                l++;
+            } else {
+                array[i] = supportArray[r];
+                r++;
+            }
+        }
+    }
 }

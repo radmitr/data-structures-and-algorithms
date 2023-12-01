@@ -70,7 +70,7 @@ import java.util.List;
  */
 public class BinaryTree {
 
-	private Node root;
+    private Node root;
 
     private class Node {
         int key;
@@ -94,94 +94,94 @@ public class BinaryTree {
 //        }
     }
 
-	public void addNode(int key, Object data) {
-		root = addNodeRecursive(root, key, data);
-	}
+    public void addNode(int key, Object data) {
+        root = addNodeRecursive(root, key, data);
+    }
 
-	private Node addNodeRecursive(Node node, int key, Object data) {
-		if (node == null) {
-			return new Node(key, data);
-		}
-		if (key == node.key) {
-			node.data = data;
-			return node;
-		}
-		if (key < node.key) {
-			node.leftNode = addNodeRecursive(node.leftNode, key, data);
-		} else {
-			node.rightNode = addNodeRecursive(node.rightNode, key, data);
-		}
-		return node;
-	}
+    private Node addNodeRecursive(Node node, int key, Object data) {
+        if (node == null) {
+            return new Node(key, data);
+        }
+        if (key == node.key) {
+            node.data = data;
+            return node;
+        }
+        if (key < node.key) {
+            node.leftNode = addNodeRecursive(node.leftNode, key, data);
+        } else {
+            node.rightNode = addNodeRecursive(node.rightNode, key, data);
+        }
+        return node;
+    }
 
-	public Object findByKey(int key) {
-		return findByKeyRecursive(root, key);
-	}
+    public Object findByKey(int key) {
+        return findByKeyRecursive(root, key);
+    }
 
-	private Object findByKeyRecursive(Node node, int key) {
-		if (node == null) {
-			return null;
-		}
-		if (node.key == key) {
-			return node.data;
-		}
-		return (key < node.key) ? findByKeyRecursive(node.leftNode, key) : findByKeyRecursive(node.rightNode, key);
-	}
+    private Object findByKeyRecursive(Node node, int key) {
+        if (node == null) {
+            return null;
+        }
+        if (node.key == key) {
+            return node.data;
+        }
+        return (key < node.key) ? findByKeyRecursive(node.leftNode, key) : findByKeyRecursive(node.rightNode, key);
+    }
 
-	public void deleteNode(int key) {
-		root = deleteNodeRecursive(root, key);
-	}
+    public void deleteNode(int key) {
+        root = deleteNodeRecursive(root, key);
+    }
 
-	private Node deleteNodeRecursive(Node node, int key) {
-		if (node == null) {
-			return null;
-		}
-		if (key == node.key) {
-			// node has no child node
-			if (node.leftNode == null && node.rightNode == null) {
-				return null;
-			}
+    private Node deleteNodeRecursive(Node node, int key) {
+        if (node == null) {
+            return null;
+        }
+        if (key == node.key) {
+            // node has no child node
+            if (node.leftNode == null && node.rightNode == null) {
+                return null;
+            }
 
-			// node has exactly one child
-			if (node.leftNode == null) {
-				return node.rightNode;
-			}
-			if (node.rightNode == null) {
-				return node.leftNode;
-			}
+            // node has exactly one child
+            if (node.leftNode == null) {
+                return node.rightNode;
+            }
+            if (node.rightNode == null) {
+                return node.leftNode;
+            }
 
-			// node has two child node
-			if (node.rightNode != null && node.leftNode != null) {
-				Node smallestNode = findSmallestValue(node.rightNode);
-				node.key = smallestNode.key;
-				node.data = smallestNode.data;
-				node.rightNode = deleteNodeRecursive(node.rightNode, smallestNode.key);
-				return node;
-			}
-		}
-		if (key < node.key) {
-			node.leftNode = deleteNodeRecursive(node.leftNode, key);
-			return node;
-		} else {
-			node.rightNode = deleteNodeRecursive(node.rightNode, key);
-			return node;
-		}
-	}
+            // node has two child node
+            if (node.rightNode != null && node.leftNode != null) {
+                Node smallestNode = findSmallestValue(node.rightNode);
+                node.key = smallestNode.key;
+                node.data = smallestNode.data;
+                node.rightNode = deleteNodeRecursive(node.rightNode, smallestNode.key);
+                return node;
+            }
+        }
+        if (key < node.key) {
+            node.leftNode = deleteNodeRecursive(node.leftNode, key);
+            return node;
+        } else {
+            node.rightNode = deleteNodeRecursive(node.rightNode, key);
+            return node;
+        }
+    }
 
-	private Node findSmallestValue(Node node) {
-		return node.leftNode == null ? node : findSmallestValue(node.leftNode);
-	}
+    private Node findSmallestValue(Node node) {
+        return node.leftNode == null ? node : findSmallestValue(node.leftNode);
+    }
 
-	public int size() {
-		return sizeRecursive(root);
-	}
+    public int size() {
+        return sizeRecursive(root);
+    }
 
-	private int sizeRecursive(Node node) {
-		if (node == null) {
-			return 0;
-		}
-		return 1 + sizeRecursive(node.leftNode) + sizeRecursive(node.rightNode);
-	}
+    private int sizeRecursive(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + sizeRecursive(node.leftNode) + sizeRecursive(node.rightNode);
+    }
 
     public String toString() {
         if (root == null) {
@@ -232,7 +232,7 @@ public class BinaryTree {
         System.out.println(biTree.size());
         System.out.println();
 
-		biTree.deleteNode(4);
+        biTree.deleteNode(4);
         System.out.println(biTree);
         System.out.println(biTree.size());
     }

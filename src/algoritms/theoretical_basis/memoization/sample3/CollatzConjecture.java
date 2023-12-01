@@ -81,56 +81,56 @@ import java.util.Map;
  */
 public class CollatzConjecture {
 
-	public static Map<BigInteger, BigInteger> mem = new HashMap<>();
+    public static Map<BigInteger, BigInteger> mem = new HashMap<>();
 
-	public static void main(String[] args) {
-		BigInteger number0 = BigInteger.valueOf(3);
-		System.out.printf("{%d=%d}\n",number0, getSyracuseSequenceLength(number0));
-		System.out.println(mem);
-		System.out.println();
+    public static void main(String[] args) {
+        BigInteger number0 = BigInteger.valueOf(3);
+        System.out.printf("{%d=%d}\n",number0, getSyracuseSequenceLength(number0));
+        System.out.println(mem);
+        System.out.println();
 
-		BigInteger number1 = BigInteger.valueOf(19);
-		System.out.printf("{%d=%d}\n",number1, getSyracuseSequenceLength(number1));
-		System.out.println(mem);
-		System.out.println();
+        BigInteger number1 = BigInteger.valueOf(19);
+        System.out.printf("{%d=%d}\n",number1, getSyracuseSequenceLength(number1));
+        System.out.println(mem);
+        System.out.println();
 
-		BigInteger number2 = BigInteger.valueOf(40);
-		System.out.printf("{%d=%d}\n",number2, getSyracuseSequenceLength(number2));
-		System.out.println(mem);
-		System.out.println();
+        BigInteger number2 = BigInteger.valueOf(40);
+        System.out.printf("{%d=%d}\n",number2, getSyracuseSequenceLength(number2));
+        System.out.println(mem);
+        System.out.println();
 
-		BigInteger number3 = BigInteger.valueOf(27);
-		System.out.printf("{%d=%d}\n",number3, getSyracuseSequenceLength(number3));
-		System.out.println(mem);
-		System.out.println();
-		getSyracuseSequenceLength(number3);
+        BigInteger number3 = BigInteger.valueOf(27);
+        System.out.printf("{%d=%d}\n",number3, getSyracuseSequenceLength(number3));
+        System.out.println(mem);
+        System.out.println();
+        getSyracuseSequenceLength(number3);
 
-//		BigInteger number4 = new BigInteger("3555566607345645457467443456887894333647475686855463453789700011");
-//		System.out.printf("%d=%d\n",number4, getSyracuseSequenceLength(number4));
-//		System.out.println(mem);
-//		System.out.println();
-	}
+//        BigInteger number4 = new BigInteger("3555566607345645457467443456887894333647475686855463453789700011");
+//        System.out.printf("%d=%d\n",number4, getSyracuseSequenceLength(number4));
+//        System.out.println(mem);
+//        System.out.println();
+    }
 
-	public static BigInteger getSyracuseSequenceLength(BigInteger number) {
-		BigInteger result = mem.get(number);
-		if (result != null) {
-			System.out.printf("Cache: {%d=%d}\n", number, result);
-			return result;
-		}
-		if (number.equals(BigInteger.ONE)) {
-			mem.put(number, BigInteger.ZERO);
-			return BigInteger.ZERO; // добавил (оптимизация)
-		} else {
-			BigInteger newNumber = null;
-			if (number.remainder(BigInteger.TWO).equals(BigInteger.ZERO)) {
-				newNumber = number.divide(BigInteger.TWO);
-			} else {
-				newNumber = number.multiply(BigInteger.valueOf(3)).add(BigInteger.ONE);
-			}
-			result = BigInteger.ONE.add(getSyracuseSequenceLength(newNumber));
-			mem.put(number, result);
-			return result; // добавил (оптимизация)
-		}
-//		return mem.get(number); // оптимизация
-	}
+    public static BigInteger getSyracuseSequenceLength(BigInteger number) {
+        BigInteger result = mem.get(number);
+        if (result != null) {
+            System.out.printf("Cache: {%d=%d}\n", number, result);
+            return result;
+        }
+        if (number.equals(BigInteger.ONE)) {
+            mem.put(number, BigInteger.ZERO);
+            return BigInteger.ZERO; // добавил (оптимизация)
+        } else {
+            BigInteger newNumber = null;
+            if (number.remainder(BigInteger.TWO).equals(BigInteger.ZERO)) {
+                newNumber = number.divide(BigInteger.TWO);
+            } else {
+                newNumber = number.multiply(BigInteger.valueOf(3)).add(BigInteger.ONE);
+            }
+            result = BigInteger.ONE.add(getSyracuseSequenceLength(newNumber));
+            mem.put(number, result);
+            return result; // добавил (оптимизация)
+        }
+//        return mem.get(number); // оптимизация
+    }
 }

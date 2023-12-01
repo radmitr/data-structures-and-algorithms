@@ -61,56 +61,56 @@ import java.util.Map;
  */
 public class FactorialMemoization {
 
-	public static Map<Integer, BigInteger> mem = new HashMap<>();
+    public static Map<Integer, BigInteger> mem = new HashMap<>();
 
-	public static void main(String[] args) {
-		// 1 - factorialCyclical()
-		int number1 = 5;
-		BigInteger fact = factorialCyclical(number1);
-		System.out.printf("%d! = %d\n", number1, fact);
-		System.out.println();
+    public static void main(String[] args) {
+        // 1 - factorialCyclical()
+        int number1 = 5;
+        BigInteger fact = factorialCyclical(number1);
+        System.out.printf("%d! = %d\n", number1, fact);
+        System.out.println();
 
-		fact = factorialCyclical(5);
-		System.out.printf("%d! = %d\n", number1, fact);
-		System.out.println("-----------------------------------");
+        fact = factorialCyclical(5);
+        System.out.printf("%d! = %d\n", number1, fact);
+        System.out.println("-----------------------------------");
 
-		// 2 - factorialRecursive()
-		int number2 = 8;
-		fact = factorialRecursive(number2);
-		System.out.printf("%d! = %d\n", number2, fact);
-		System.out.println();
+        // 2 - factorialRecursive()
+        int number2 = 8;
+        fact = factorialRecursive(number2);
+        System.out.printf("%d! = %d\n", number2, fact);
+        System.out.println();
 
-		int number3 = 7;
-		fact = factorialRecursive(number3);
-		System.out.printf("%d! = %d\n", number3, fact);
-	}
+        int number3 = 7;
+        fact = factorialRecursive(number3);
+        System.out.printf("%d! = %d\n", number3, fact);
+    }
 
-	public static BigInteger factorialCyclical(int number) {
-		BigInteger fact = mem.get(number);
-		if (fact != null) {
-			System.out.printf("Cache: %d=%d\n", number, fact);
-			return fact;
-		} else {
-			fact = BigInteger.ONE;
-			for (int i = 1; i <= number; i++) {
-				fact = fact.multiply(BigInteger.valueOf(i));
-			}
-			mem.put(number, fact);
-			return fact;
-		}
-	}
+    public static BigInteger factorialCyclical(int number) {
+        BigInteger fact = mem.get(number);
+        if (fact != null) {
+            System.out.printf("Cache: %d=%d\n", number, fact);
+            return fact;
+        } else {
+            fact = BigInteger.ONE;
+            for (int i = 1; i <= number; i++) {
+                fact = fact.multiply(BigInteger.valueOf(i));
+            }
+            mem.put(number, fact);
+            return fact;
+        }
+    }
 
-	public static BigInteger factorialRecursive(int number) {
-		if (number <= 1) {
-			return BigInteger.ONE;
-		} else if (mem.containsKey(number)) {
-			BigInteger fact = mem.get(number);
-			System.out.printf("Cache: {%d=%d}\n", number, fact);
-			return fact;
-		} else {
-			BigInteger fact = BigInteger.valueOf(number).multiply(factorialRecursive(number - 1));
-			mem.put(number, fact);
-			return fact;
-		}
-	}
+    public static BigInteger factorialRecursive(int number) {
+        if (number <= 1) {
+            return BigInteger.ONE;
+        } else if (mem.containsKey(number)) {
+            BigInteger fact = mem.get(number);
+            System.out.printf("Cache: {%d=%d}\n", number, fact);
+            return fact;
+        } else {
+            BigInteger fact = BigInteger.valueOf(number).multiply(factorialRecursive(number - 1));
+            mem.put(number, fact);
+            return fact;
+        }
+    }
 }

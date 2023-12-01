@@ -69,10 +69,10 @@ import java.util.Arrays;
  */
 public class RabinKarp2 {
 
-	public static final int BASE = 31;
-	public static final int Q = 2147483647; // 2^(31 - 1)
+    public static final int BASE = 31;
+    public static final int Q = 2147483647; // 2^(31 - 1)
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println(Arrays.toString(
                 searchFirstSubstring("Awesome apple", "some")));
         System.out.println(Arrays.toString(
@@ -85,42 +85,42 @@ public class RabinKarp2 {
                 searchFirstSubstring("Awesome apple", "apple", "apple", "apple")));
         System.out.println(Arrays.toString(
                 searchFirstSubstring("Awesome apple", "xxxx", "yyyy", "appl")));
-	}
+    }
 
-	public static int gornerScheme(char[] sym, int start, int end) {
-		int result = (int) (sym[start]);
-		for (int i = start; i < end - 1; i++) {
-			result = result * BASE + (int) sym[i + 1];
-		}
-		return result;
-	}
+    public static int gornerScheme(char[] sym, int start, int end) {
+        int result = (int) (sym[start]);
+        for (int i = start; i < end - 1; i++) {
+            result = result * BASE + (int) sym[i + 1];
+        }
+        return result;
+    }
 
-	public static int hash(char[] sym, int start, int end) {
-		return gornerScheme(sym, start, end) % Q;
-	}
+    public static int hash(char[] sym, int start, int end) {
+        return gornerScheme(sym, start, end) % Q;
+    }
 
     /**
      * Возвращает индекс первого вхождения в строку baseText одной из строк массива subStrings
      * и индекс элемента этого массива
      */
-	public static int[] searchFirstSubstring(String baseText, String... subStrings) {
-		if (!checkEqualsLength(subStrings)) {
-			throw new IllegalArgumentException("substrings must be the same length");
-		}
+    public static int[] searchFirstSubstring(String baseText, String... subStrings) {
+        if (!checkEqualsLength(subStrings)) {
+            throw new IllegalArgumentException("substrings must be the same length");
+        }
         int[] result = new int[] { -1, -1 };
-		int[] hashArray = new int[subStrings.length];
-		for (int i = 0; i < hashArray.length; i++) {
-			hashArray[i] = hash(subStrings[i].toCharArray(), 0, subStrings[i].length());
-		}
-		char[] sym = baseText.toCharArray();
-		int start = 0;
-		int m = subStrings[0].length();
-		int end = start + m;
-		int partTextHash = hash(sym, start, end);
-		int rm = basePow(m - 1); // rm = BASE^(m - 1)
+        int[] hashArray = new int[subStrings.length];
+        for (int i = 0; i < hashArray.length; i++) {
+            hashArray[i] = hash(subStrings[i].toCharArray(), 0, subStrings[i].length());
+        }
+        char[] sym = baseText.toCharArray();
+        int start = 0;
+        int m = subStrings[0].length();
+        int end = start + m;
+        int partTextHash = hash(sym, start, end);
+        int rm = basePow(m - 1); // rm = BASE^(m - 1)
 
-		for (;;) {
-			int[] someHash = findSomeHash(partTextHash, hashArray);
+        for (;;) {
+            int[] someHash = findSomeHash(partTextHash, hashArray);
             if (someHash.length > 0) {
                 String text = new String(sym, start, m);
                 for (int i = 0; i < someHash.length; i++) {
@@ -131,27 +131,27 @@ public class RabinKarp2 {
                     }
                 }
             }
-			start++;
-			end++;
+            start++;
+            end++;
             if (end > sym.length) {
                 break;
             }
             // 'start' - inclusive, 'end' - exclusive
             partTextHash = ((partTextHash - rm * (int) sym[start - 1]) * BASE + sym[end - 1]) % Q;
-		}
-		return result;
-	}
+        }
+        return result;
+    }
 
-	public static int basePow(int n) {
-		if (n == 0) {
-			return 1;
-		}
-		int result = 1;
-		for (int i = 0; i < n; i++) {
-			result *= BASE;
-		}
-		return result;
-	}
+    public static int basePow(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        int result = 1;
+        for (int i = 0; i < n; i++) {
+            result *= BASE;
+        }
+        return result;
+    }
 
     public static int[] findSomeHash(int hash, int[] subHashs) {
         int n = 0;
@@ -170,13 +170,13 @@ public class RabinKarp2 {
         return result;
     }
 
-	public static boolean checkEqualsLength(String[] texts) {
-		int l = texts[0].length();
-		for (int i = 1; i < texts.length; i++) {
-			if (texts[i].length() != l) {
-				return false;
-			}
-		}
-		return true;
-	}
+    public static boolean checkEqualsLength(String[] texts) {
+        int l = texts[0].length();
+        for (int i = 1; i < texts.length; i++) {
+            if (texts[i].length() != l) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

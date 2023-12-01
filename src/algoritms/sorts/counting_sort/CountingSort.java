@@ -37,42 +37,42 @@ import java.util.Arrays;
  */
 public class CountingSort {
 
-	public static void main(String[] args) {
-		int[] sort = { 5, 0, -2, 7, 3, -2 };
-		System.out.println(Arrays.toString(sort));
+    public static void main(String[] args) {
+        int[] sort = { 5, 0, -2, 7, 3, -2 };
+        System.out.println(Arrays.toString(sort));
 
-		countingSort(sort);
-		System.out.println(Arrays.toString(sort));
-	}
+        countingSort(sort);
+        System.out.println(Arrays.toString(sort));
+    }
 
-	public static void countingSort(int[] sort) {
-		int[] minMax = findMinMax(sort);
-		int minValue = minMax[0];
-		int maxValue = minMax[1];
-		int[] support = new int[maxValue - minValue + 1];
-		for (int element : sort) {
-			support[element - minValue]++;
-		}
-		int index = 0;
-		for (int i = 0; i < support.length; i++) {
-			for (int j = 0; j < support[i]; j++) {
-				sort[index] = i + minValue;
-				index++;
-			}
-		}
-	}
+    public static void countingSort(int[] sort) {
+        int[] minMax = findMinMax(sort);
+        int minValue = minMax[0];
+        int maxValue = minMax[1];
+        int[] support = new int[maxValue - minValue + 1];
+        for (int element : sort) {
+            support[element - minValue]++;
+        }
+        int index = 0;
+        for (int i = 0; i < support.length; i++) {
+            for (int j = 0; j < support[i]; j++) {
+                sort[index] = i + minValue;
+                index++;
+            }
+        }
+    }
 
-	public static int[] findMinMax(int[] array) {
-		int min = array[0];
-		int max = array[0];
-		for (int element : array) {
-			if (min > element) {
-				min = element;
-			}
-			if (max < element) {
-				max = element;
-			}
-		}
-		return new int[] { min, max };
-	}
+    public static int[] findMinMax(int[] array) {
+        int min = array[0];
+        int max = array[0];
+        for (int element : array) {
+            if (min > element) {
+                min = element;
+            }
+            if (max < element) {
+                max = element;
+            }
+        }
+        return new int[] { min, max };
+    }
 }

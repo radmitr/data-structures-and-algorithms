@@ -34,20 +34,20 @@ import java.util.Arrays;
  */
 public class InsertionSort {
 
-	public static void main(String[] args) {
-		int[] array = { 5, 0, -2, 7, 3 };
+    public static void main(String[] args) {
+        int[] array = { 5, 0, -2, 7, 3 };
 
-		for (int i = 1; i < array.length; i++) {
-			int pasteElement = array[i];
-			int j;
-			for (j = i; j > 0; j--) {
-				if (array[j - 1] <= pasteElement) {
-					break;
-				}
-				array[j] = array[j - 1];
-			}
-			array[j] = pasteElement;
-		}
-		System.out.println(Arrays.toString(array));
-	}
+        for (int i = 1; i < array.length; i++) {
+            int pasteElement = array[i];
+            int j;
+            for (j = i; j > 0; j--) {
+                if (array[j - 1] <= pasteElement) {
+                    break;
+                }
+                array[j] = array[j - 1];
+            }
+            array[j] = pasteElement;
+        }
+        System.out.println(Arrays.toString(array));
+    }
 }

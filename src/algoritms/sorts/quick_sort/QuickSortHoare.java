@@ -28,13 +28,13 @@ import java.util.Arrays;
  */
 public class QuickSortHoare {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         // 1 - array
-		int[] array = { 0, 5, -2, 7, 3, -2 };
+        int[] array = { 0, 5, -2, 7, 3, -2 };
         System.out.println(Arrays.toString(array));
 
-		quickSort(array);
-		System.out.println(Arrays.toString(array));
+        quickSort(array);
+        System.out.println(Arrays.toString(array));
         System.out.println();
 
         // 2 - array2
@@ -43,44 +43,44 @@ public class QuickSortHoare {
 
         quickSort(array2);
         System.out.println(Arrays.toString(array2));
-	}
+    }
 
-	public static void quickSort(int[] array) {
-		quickSort(array, 0, array.length - 1);
-	}
+    public static void quickSort(int[] array) {
+        quickSort(array, 0, array.length - 1);
+    }
 
-	public static void quickSort(int[] array, int lo, int hi) {
-		if (lo >= hi) {
-			return;
-		}
-		int p = partition(array, lo, hi);
-		quickSort(array, lo, p - 1);
-		quickSort(array, p + 1, hi);
-	}
+    public static void quickSort(int[] array, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int p = partition(array, lo, hi);
+        quickSort(array, lo, p - 1);
+        quickSort(array, p + 1, hi);
+    }
 
-	public static int partition(int[] array, int lo, int hi) {
-		int i = lo + 1;
-		int supportElement = array[lo];
-		int j = hi;
-		while (true) {
+    public static int partition(int[] array, int lo, int hi) {
+        int i = lo + 1;
+        int supportElement = array[lo];
+        int j = hi;
+        while (true) {
             while (i < hi && array[i] < supportElement) {
-				i++;
-			}
+                i++;
+            }
             while (array[j] > supportElement) {
-				j--;
-			}
-			if (i >= j) {
-				break;
-			}
-			swap(array, i++, j--);
-		}
-		swap(array, lo, j);
-		return j;
-	}
+                j--;
+            }
+            if (i >= j) {
+                break;
+            }
+            swap(array, i++, j--);
+        }
+        swap(array, lo, j);
+        return j;
+    }
 
-	public static void swap(int[] array, int i, int j) {
-		int temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
+    public static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
 }

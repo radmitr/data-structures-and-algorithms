@@ -41,48 +41,48 @@ import java.util.Arrays;
  */
 public class QuickSortDijkstra {
 
-	public static void main(String[] args) {
-		int[] array = { 0, 5, -2, 7, 3 };
-		quickSort(array);
-		System.out.println(Arrays.toString(array));
-	}
+    public static void main(String[] args) {
+        int[] array = { 0, 5, -2, 7, 3 };
+        quickSort(array);
+        System.out.println(Arrays.toString(array));
+    }
 
-	public static void quickSort(int[] array) {
-		quickSort(array, 0, array.length - 1);
-	}
+    public static void quickSort(int[] array) {
+        quickSort(array, 0, array.length - 1);
+    }
 
-	public static void quickSort(int[] array, int lo, int hi) {
-		if (lo >= hi) {
-			return;
-		}
-		int[] part = partition(array, lo, hi);
-		quickSort(array, lo, part[0] - 1);
-		quickSort(array, part[1] + 1, hi);
-	}
+    public static void quickSort(int[] array, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int[] part = partition(array, lo, hi);
+        quickSort(array, lo, part[0] - 1);
+        quickSort(array, part[1] + 1, hi);
+    }
 
-	public static int[] partition(int[] array, int lo, int hi) {
-		int i = lo + 1;
-		int lt = lo;
-		int gt = hi;
-		int supportElement = array[lo];
-		while (i <= gt) {
-			if (array[i] < supportElement) {
-				swap(array, i, lt);
-				i++;
-				lt++;
-			} else if (array[i] > supportElement) {
-				swap(array, i, gt);
-				gt--;
-			} else {
-				i++;
-			}
-		}
-		return new int[] { lt, gt };
-	}
+    public static int[] partition(int[] array, int lo, int hi) {
+        int i = lo + 1;
+        int lt = lo;
+        int gt = hi;
+        int supportElement = array[lo];
+        while (i <= gt) {
+            if (array[i] < supportElement) {
+                swap(array, i, lt);
+                i++;
+                lt++;
+            } else if (array[i] > supportElement) {
+                swap(array, i, gt);
+                gt--;
+            } else {
+                i++;
+            }
+        }
+        return new int[] { lt, gt };
+    }
 
-	public static void swap(int[] array, int i, int j) {
-		int temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
+    public static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
 }

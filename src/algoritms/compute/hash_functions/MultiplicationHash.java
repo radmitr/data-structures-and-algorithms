@@ -45,22 +45,22 @@ public class MultiplicationHash {
 
     public static final double A = 0.6180339887; // рекомендуемое значение (Дональд Кнут)
 
-	public static void main(String[] args) {
-		int[] array1 = new int[] { 3, 6, 1 };
+    public static void main(String[] args) {
+        int[] array1 = new int[] { 3, 6, 1 };
 
-		System.out.println(hash(array1, 1 << 16));
-	}
+        System.out.println(hash(array1, 1 << 16));
+    }
 
-	public static int arrayToNumber(int[] array) {
-		int result = array[0];
-		for (int i = 0; i < array.length - 1; i++) {
-			result = (result << 5) - result + array[i + 1];
-		}
-		return result;
-	}
+    public static int arrayToNumber(int[] array) {
+        int result = array[0];
+        for (int i = 0; i < array.length - 1; i++) {
+            result = (result << 5) - result + array[i + 1];
+        }
+        return result;
+    }
 
-	public static int hash(int[] array, int m) {
-		int number = Math.abs(arrayToNumber(array));
-		return (int) (m * ((number * A) % 1));
-	}
+    public static int hash(int[] array, int m) {
+        int number = Math.abs(arrayToNumber(array));
+        return (int) (m * ((number * A) % 1));
+    }
 }
