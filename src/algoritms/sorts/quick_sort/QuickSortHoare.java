@@ -29,10 +29,20 @@ import java.util.Arrays;
 public class QuickSortHoare {
 
 	public static void main(String[] args) {
-		int[] array = new int[] { 0, 5, -2, 7, 3, -2 };
+        // 1 - array
+		int[] array = { 0, 5, -2, 7, 3, -2 };
+        System.out.println(Arrays.toString(array));
+
 		sort(array);
 		System.out.println(Arrays.toString(array));
+        System.out.println();
 
+        // 2 - array2
+        int[] array2 = { 0, 5, -2, 7, 3, -2, 10, -15, 7, 7, 8, 9, 2, 15, 10, 1 };
+        System.out.println(Arrays.toString(array2));
+
+        sort(array2);
+        System.out.println(Arrays.toString(array2));
 	}
 
 	public static void sort(int[] array) {
@@ -52,11 +62,11 @@ public class QuickSortHoare {
 		int i = lo + 1;
 		int supportElement = array[lo];
 		int j = hi;
-		for (;;) {
-			for (; i < hi && array[i] < supportElement;) {
+		while (true) {
+            while (i < hi && array[i] < supportElement) {
 				i++;
 			}
-			for (; array[j] > supportElement;) {
+            while (array[j] > supportElement) {
 				j--;
 			}
 			if (i >= j) {

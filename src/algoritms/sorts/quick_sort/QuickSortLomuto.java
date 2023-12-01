@@ -29,9 +29,28 @@ import java.util.Arrays;
 public class QuickSortLomuto {
 
 	public static void main(String[] args) {
-		int[] array = new int[] { 0, 5, -2, 7, 3 };
+        // 1 - array
+		int[] array = { 0, 5, -2, 7, 3 };
+        System.out.println(Arrays.toString(array));
+
 		sort(array);
 		System.out.println(Arrays.toString(array));
+        System.out.println();
+
+        // 2 - array2
+        int[] array2 = { 1, -1, 2, -3, 4, 2 };
+        System.out.println(Arrays.toString(array2));
+
+        sort(array2);
+        System.out.println(Arrays.toString(array2));
+        System.out.println();
+
+        // 3 - array2
+        int[] array3 = { 0, 5, -2, 7, 3, 10, -9, 25, 4, 4, 5, 6, 7, 6, 5, 4, 23, 15, -1};
+        System.out.println(Arrays.toString(array3));
+
+        sort(array3);
+        System.out.println(Arrays.toString(array3));
 	}
 
 	public static void sort(int[] array) {
