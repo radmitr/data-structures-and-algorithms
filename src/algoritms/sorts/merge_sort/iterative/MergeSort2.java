@@ -30,12 +30,10 @@ import java.util.Comparator;
 public class MergeSort2 {
 
 	public static void main(String[] args) {
-
-		String[] array = new String[] { "Python", "Ada", "Java", "C", "Fortran" };
+		String[] array = { "Python", "Ada", "Java", "C", "Fortran" };
 		Comparator<String> comp = (a, b) -> a.length() - b.length();
 		sort(array, comp);
 		System.out.println(Arrays.toString(array));
-
 	}
 
 	public static <T> void sort(T[] array, Comparator<T> comp) {
