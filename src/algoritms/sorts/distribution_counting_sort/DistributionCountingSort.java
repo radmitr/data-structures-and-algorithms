@@ -53,7 +53,7 @@ public class DistributionCountingSort {
 		Cat cat6 = new Cat("Barsik", 6);
 		Cat[] cats = new Cat[] { cat1, cat2, cat3, cat4, cat5, cat6 };
 
-		Cat[] result = sort(cats);
+		Cat[] result = distributionCountingSort(cats);
 		for (Cat cat : result) {
 			System.out.println(cat);
 		}
@@ -73,7 +73,7 @@ public class DistributionCountingSort {
 		return new int[] { minKey, maxKey };
 	}
 
-	public static Cat[] sort(Cat[] cats) {
+	public static Cat[] distributionCountingSort(Cat[] cats) {
 		int[] minMaxKey = findMinMaxKey(cats);
 		int minKey = minMaxKey[0];
 		int maxKey = minMaxKey[1];
