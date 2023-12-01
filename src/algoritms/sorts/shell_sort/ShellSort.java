@@ -45,18 +45,18 @@ public class ShellSort {
 		int[] array = { 5, 0, -2, 7, 3 };
 		System.out.println(Arrays.toString(array));
 
-		sort(array);
+		shellSort(array);
 		System.out.println(Arrays.toString(array));
 
         // 2 - array2
         int[] array2 = { 32, 95, 16, 82, 24, 66, 35, 19, 75, 54, 40, 43 };
         System.out.println(Arrays.toString(array2));
 
-        sort(array2);
+        shellSort(array2);
         System.out.println(Arrays.toString(array2));
 	}
 
-	public static void sort(int[] array) {
+	public static void shellSort(int[] array) {
 		int step = array.length / 2;
 		while (step > 0) {
 			for (int i = step; i < array.length; i++) {

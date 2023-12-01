@@ -48,19 +48,19 @@ public class ModifiedShellSort {
         int[] array = new int[initialArray.length];
 
         System.arraycopy(initialArray, 0, array, 0, initialArray.length);
-        sort(array, new ShellStep(array));
+        shellSort(array, new ShellStep(array));
         System.out.println(Arrays.toString(array));
 
         System.arraycopy(initialArray, 0, array, 0, initialArray.length);
-        sort(array, new HibbardStep(array));
+        shellSort(array, new HibbardStep(array));
         System.out.println(Arrays.toString(array));
 
         System.arraycopy(initialArray, 0, array, 0, initialArray.length);
-        sort(array, new SedgewickStep(array));
+        shellSort(array, new SedgewickStep(array));
         System.out.println(Arrays.toString(array));
 
         System.arraycopy(initialArray, 0, array, 0, initialArray.length);
-        sort(array, new KnuthStep(array));
+        shellSort(array, new KnuthStep(array));
         System.out.println(Arrays.toString(array));
 
         // 2 - initialArray2
@@ -70,23 +70,23 @@ public class ModifiedShellSort {
         int[] array2 = new int[initialArray2.length];
 
         System.arraycopy(initialArray2, 0, array2, 0, initialArray2.length);
-        sort(array2, new ShellStep(array2));
+        shellSort(array2, new ShellStep(array2));
         System.out.println(Arrays.toString(array2));
 
         System.arraycopy(initialArray2, 0, array2, 0, initialArray2.length);
-        sort(array2, new HibbardStep(array2));
+        shellSort(array2, new HibbardStep(array2));
         System.out.println(Arrays.toString(array2));
 
         System.arraycopy(initialArray2, 0, array2, 0, initialArray2.length);
-        sort(array2, new SedgewickStep(array2));
+        shellSort(array2, new SedgewickStep(array2));
         System.out.println(Arrays.toString(array2));
 
         System.arraycopy(initialArray2, 0, array2, 0, initialArray2.length);
-        sort(array2, new KnuthStep(array2));
+        shellSort(array2, new KnuthStep(array2));
         System.out.println(Arrays.toString(array2));
     }
 
-	public static void sort(int[] array, StepGenerator stepGen) {
+	public static void shellSort(int[] array, StepGenerator stepGen) {
 		int step = stepGen.nextStep();
 		while (step > 0) {
 			for (int i = step; i < array.length; i++) {
