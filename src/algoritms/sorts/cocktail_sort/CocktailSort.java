@@ -49,15 +49,14 @@ import java.util.Arrays;
 public class CocktailSort {
 
 	public static void main(String[] args) {
-		// 1 - sort int[]
 		int[] array = { 5, 0, -2, 7, 3 };
 		System.out.println(Arrays.toString(array));
 
-		sort(array);
+		cocktailSort(array);
 		System.out.println(Arrays.toString(array));
 	}
 
-	public static void sort(int[] sequince) {
+	public static void cocktailSort(int[] sequince) {
 		int left = 0;
 		int right = sequince.length - 1;
 		int control = right;
