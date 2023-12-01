@@ -41,11 +41,11 @@ public class CountingSort {
 		int[] sort = { 5, 0, -2, 7, 3, -2 };
 		System.out.println(Arrays.toString(sort));
 
-		sort(sort);
+		countingSort(sort);
 		System.out.println(Arrays.toString(sort));
 	}
 
-	public static void sort(int[] sort) {
+	public static void countingSort(int[] sort) {
 		int[] minMax = findMinMax(sort);
 		int minValue = minMax[0];
 		int maxValue = minMax[1];
