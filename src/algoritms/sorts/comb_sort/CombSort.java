@@ -43,19 +43,19 @@ public class CombSort {
 		int[] array = { 5, 0, -2, 7, 3 };
 		System.out.println(Arrays.toString(array));
 
-		sort(array);
+		combSort(array);
 		System.out.println(Arrays.toString(array));
-		System.out.println("--------------------------------------");
+		System.out.println("");
 
 		// 2 - sort double[]
 		double[] array2 = { 7.91, 5.16, -5.21, 5.88, -11.98 };
 		System.out.println(Arrays.toString(array2));
 
-		sort(array2);
+		combSort(array2);
 		System.out.println(Arrays.toString(array2));
 	}
 
-	public static void sort(int[] array) {
+	public static void combSort(int[] array) {
 		int step = (int) (array.length / FACTOR);
 		while (true) {
 			int swapCount = 0;
@@ -79,7 +79,7 @@ public class CombSort {
 		}
 	}
 
-	public static void sort(double[] array) {
+	public static void combSort(double[] array) {
 		int step = (int) (array.length / FACTOR);
 		while (true) {
 			int swapCount = 0;
