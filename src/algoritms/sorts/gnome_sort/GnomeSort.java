@@ -51,11 +51,11 @@ public class GnomeSort {
 		int[] array = { 5, 0, -2, 7, 3 };
 		System.out.println(Arrays.toString(array));
 
-		sort(array);
+		gnomeSort(array);
 		System.out.println(Arrays.toString(array));
 	}
 
-	public static void sort(int[] array) {
+	public static void gnomeSort(int[] array) {
 		int index = 1;
 		int i = 0;
 		while (i < array.length - 1) {
