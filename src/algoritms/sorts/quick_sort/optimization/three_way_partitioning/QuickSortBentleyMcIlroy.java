@@ -1,6 +1,7 @@
 package algoritms.sorts.quick_sort.optimization.three_way_partitioning;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -28,17 +29,17 @@ import java.util.Arrays;
  * ------------------------------------------------------------------------------------------------
  * Разбиение Бентли и Макилроя
  *
- * 1) В качестве опорного элемента выбирается первый элемент последовательности
- *    (supportElement). Объявляются переменные для хранения индексов (в дальнейшем i=lo+1, j=hi,
- *    p=lo, g=h+1). Переходим к пункту 2.
+ * 1) В качестве опорного элемента выбирается первый элемент последовательности (supportElement).
+ *    Объявляются переменные для хранения индексов (в дальнейшем i=lo+1, j=hi, p=lo, g=hi+1).
+ *    Переходим к пункту 2.
  *
  * 2) Начиная со второго элемента ищем элемент такой что a[i] ≥ supportElement, начиная с конца
  *    последовательности ищем такой элемент a[j] ≤ supportElement. Если i ≥ j. Переходим к 5.
  *    В противном случае переходим к 3.
  *
  * 3) Выполняем обмен a[i], a[j]. Если после обмена:
- *    ● a[i]=supportElement. Увеличиваем p на единицу. Выполняем обмен a[i], a[p]
- *    ● a[j]=supportElement. Уменьшаем g на единицу. Выполняем обмен a[j], a[g]
+ *      ● a[i]=supportElement. Увеличиваем p на единицу. Выполняем обмен a[i], a[p]
+ *      ● a[j]=supportElement. Уменьшаем g на единицу. Выполняем обмен a[j], a[g]
  *    Переходим к 4.
  *
  * 4) Увеличиваем i на единицу, уменьшаем j на единицу. Переходим к 2.
@@ -53,9 +54,43 @@ import java.util.Arrays;
 public class QuickSortBentleyMcIlroy {
 
     public static void main(String[] args) {
-        int[] array = { 0, -1, -2, 0, 7, 3 };
+        // 1 - array
+        int[] array = { 0, -1, -2, 7, 3 };
+        System.out.println(Arrays.toString(array));
+
         quickSort(array);
         System.out.println(Arrays.toString(array));
+        System.out.println();
+
+        // 2 - array2
+        int[] array2 = { 0, -1, -2, 0, 7, 3 };
+        System.out.println(Arrays.toString(array2));
+
+        quickSort(array2);
+        System.out.println(Arrays.toString(array2));
+        System.out.println();
+
+        // 3 - array3
+        int[] array3 = { 0, 5, -2, 7, 0, 3, 3, 0, -5, -6, 1, 2, 3, 0, -1, -1, -1 };
+        System.out.println(Arrays.toString(array3));
+
+        quickSort(array3);
+        System.out.println(Arrays.toString(array3));
+        System.out.println();
+
+        // 4 - array4
+        Random random = new Random();
+        int arraySize = 1_000;
+        int bound = 10;
+        int[] array4 = new int[arraySize];
+
+        for (int i = 0; i < array4.length; i++) {
+            array4[i] = random.nextInt(bound + 1);
+        }
+        System.out.println(Arrays.toString(array4));
+
+        quickSort(array4);
+        System.out.println(Arrays.toString(array4));
     }
 
     public static void quickSort(int[] array) {
