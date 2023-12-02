@@ -69,11 +69,11 @@ public class LinearSearchModified {
 
         // 1 - element found
         int element = 5;
-        System.out.println(element + " => i = " + linearSearchModified(sequence, element));
+        System.out.println(element + " => i=" + linearSearchModified(sequence, element));
 
         // 2 - element2 not found
         int element2 = 8;
-        System.out.println(element2 + " => i = " + linearSearchModified(sequence, element2));
+        System.out.println(element2 + " => i=" + linearSearchModified(sequence, element2));
     }
 
     public static int linearSearchModified(List<Integer> sequence, int element) {
