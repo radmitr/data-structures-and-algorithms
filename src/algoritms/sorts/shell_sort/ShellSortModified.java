@@ -38,7 +38,7 @@ import java.util.Arrays;
  * <a href="https://youtu.be/X-Pef9LHGos">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class ModifiedShellSort {
+public class ShellSortModified {
 
     public static void main(String[] args) {
         // 1 - initialArray
