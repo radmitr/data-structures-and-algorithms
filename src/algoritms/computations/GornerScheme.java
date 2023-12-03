@@ -1,4 +1,4 @@
-package algoritms.compute;
+package algoritms.computations;
 
 import java.util.Arrays;
 

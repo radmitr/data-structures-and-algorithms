@@ -1,4 +1,4 @@
-package algoritms.compute.big_integer;
+package algoritms.computations.big_integer;
 
 import java.io.PrintWriter;
 import java.util.Scanner;

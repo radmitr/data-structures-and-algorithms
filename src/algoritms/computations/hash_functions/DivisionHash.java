@@ -1,4 +1,4 @@
-package algoritms.compute.hash_functions;
+package algoritms.computations.hash_functions;
 
 import java.util.*;
 import java.util.stream.Collectors;
