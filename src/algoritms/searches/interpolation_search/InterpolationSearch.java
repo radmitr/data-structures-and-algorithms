@@ -92,8 +92,13 @@ public class InterpolationSearch {
         int[] sequence = { -2, 0, 3, 5, 7, 9, 11, 15, 18 };
         System.out.println(Arrays.toString(sequence));
 
+        // 1 - element found
         int element = 5;
-        System.out.println(interpolationSearch(sequence, element));
+        System.out.println(interpolationSearch(sequence, element)  + " -> " + element);
+
+        // 2 - element2 not found
+        int element2 = 8;
+        System.out.println(interpolationSearch(sequence, element2)  + " -> " + element2);
     }
 
     public static int interpolationSearch(int[] sequence, int element) {
