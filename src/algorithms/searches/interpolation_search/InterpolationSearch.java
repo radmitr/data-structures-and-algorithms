@@ -1,6 +1,7 @@
 package algorithms.searches.interpolation_search;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -108,6 +109,12 @@ public class InterpolationSearch {
         // 2 - element2 not found
         int element2 = 8;
         System.out.println(interpolationSearch(sequence, element2)  + " -> " + element2);
+
+        // 3 - element3 in bigSequence
+        int[] bigSequence = IntStream.rangeClosed(1, 100_000_000).toArray();
+        int element3 = 90_000_000;
+        System.out.println(interpolationSearch(bigSequence, element3)  + " -> " + element3);
+//        System.out.println(Arrays.toString(bigSequence));
     }
 
     public static int interpolationSearch(int[] sequence, int element) {
