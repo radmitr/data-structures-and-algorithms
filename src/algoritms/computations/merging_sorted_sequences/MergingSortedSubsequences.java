@@ -1,4 +1,4 @@
-package algoritms.computations.merge_sorted_sequences;
+package algoritms.computations.merging_sorted_sequences;
 
 import java.util.Arrays;
 
@@ -47,7 +47,7 @@ import java.util.Arrays;
  * <a href="https://youtu.be/RJkn1DXyH3U">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class MergeSortedSubsequences {
+public class MergingSortedSubsequences {
 
     public static void main(String[] args) {
         int[] array = { 1, 3, 6, 9, 2, 4, 4, 7 };
