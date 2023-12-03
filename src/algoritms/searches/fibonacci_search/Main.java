@@ -9,6 +9,6 @@ public class Main {
         FibonacciSearch fs = new FibonacciSearch();
 
         int index = fs.search(sequence, element);
-        System.out.println(index);
+        System.out.println(index + " -> " + element);
     }
 }
