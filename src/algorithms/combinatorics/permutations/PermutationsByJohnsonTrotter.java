@@ -53,7 +53,7 @@ import java.util.Arrays;
  * <a href="https://youtu.be/6L5mm_e3Hms">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class PermutationsJohnsonTrotter {
+public class PermutationsByJohnsonTrotter {
 
     public static void main(String[] args) {
         generatePermutations(4);
