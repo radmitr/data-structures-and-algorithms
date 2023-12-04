@@ -65,7 +65,7 @@ package algorithms.strings.search_substring.rabin_karp;
  * <a href="https://youtu.be/-iNb4_9iFNs">Ссылка на видео</>
  * ------------------------------------------------------------------------------------------------
  */
-public class RabinKarp1 {
+public class SearchSubstringRabinKarp1 {
 
     public static final int BASE = 31;
     public static final int Q = 2147483647; // 2^(31 - 1)

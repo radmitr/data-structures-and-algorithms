@@ -67,7 +67,7 @@ import java.util.Arrays;
  * <a href="https://youtu.be/-iNb4_9iFNs">Ссылка на видео</>
  * ------------------------------------------------------------------------------------------------
  */
-public class RabinKarp2 {
+public class SearchSubstringRabinKarp2 {
 
     public static final int BASE = 31;
     public static final int Q = 2147483647; // 2^(31 - 1)
