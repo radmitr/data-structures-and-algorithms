@@ -38,11 +38,11 @@ public class LinearSearch {
 
         // 1 - element found
         int element = 5;
-        System.out.println(element + " => i=" + linearSearch(sequence, element));
+        System.out.println(linearSearch(sequence, element)  + " -> " + element);
 
         // 2 - element2 not found
         int element2 = 8;
-        System.out.println(element2 + " => i=" + linearSearch(sequence, element2));
+        System.out.println(linearSearch(sequence, element2)  + " -> " + element2);
     }
 
     public static int linearSearch(int[] sequence, int element) {

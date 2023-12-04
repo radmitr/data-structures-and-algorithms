@@ -20,14 +20,14 @@ import java.util.Arrays;
  * Описание алгоритма
  *
  * 1) Поиск проводим в отсортированной последовательности. Для определения границы
- *    объявляется дополнительная переменная (в дальнейшем border) ее значение устанавливается
+ *    объявляется дополнительная переменная (в дальнейшем border), ее значение устанавливается
  *    равной единице. Переходим к пункту 2.
  *
- * 2) Выполняется проверка: если значение border больше чем длинна последовательности то в
+ * 2) Выполняется проверка: если значение border больше чем длинна последовательности, то в
  *    таком случае выполняем бинарный поиск нужного элемента в промежутке от border/2 до
  *    размера последовательности. Заканчиваем поиск. В противном случае переходим к пункту 3.
  *
- * 3) Выполняем проверку: если значение на индексе border больше искомого элемента то
+ * 3) Выполняем проверку: если значение на индексе border больше искомого элемента, то
  *    выполняем бинарный поиск нужного элемента в промежутке от border/2 до border.
  *    Заканчиваем поиск. В противном случае переходим к пункту 4.
  *
@@ -43,12 +43,12 @@ public class ExponentialSearch {
         System.out.println(Arrays.toString(array));
 
         // 1 - requiredElement found
-        int requiredElement = 5;
-        System.out.println(requiredElement + " => i=" + exponentialSearch(array, requiredElement));
+        int element = 5;
+        System.out.println(exponentialSearch(array, element)  + " -> " + element);
 
         // 2 - requiredElement2 not found
-        int requiredElement2 = 8;
-        System.out.println(requiredElement2 + " => i=" + exponentialSearch(array, requiredElement2));
+        int element2 = 8;
+        System.out.println(exponentialSearch(array, element2)  + " -> " + element2);
     }
 
     public static int binarySearch(int[] array, int requiredElement, int l, int r) {

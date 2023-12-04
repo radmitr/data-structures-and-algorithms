@@ -121,9 +121,9 @@ public class InterpolationSearch {
         int l = 0;
         int r = sequence.length - 1;
         while (sequence[l] < element && element < sequence[r]) {
-            if (sequence[l] == sequence[r]) {
-                break;
-            }
+//            if (sequence[l] == sequence[r]) {
+//                break;
+//            }
             int index = (int) ((element - sequence[l]) * 1L * (l - r) / (sequence[l] - sequence[r]) + l);
             if (sequence[index] > element) {
                 r = index - 1;
