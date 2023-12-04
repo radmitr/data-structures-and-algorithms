@@ -1,7 +1,5 @@
 package algorithms.strings.search_substring.rabin_karp;
 
-import java.util.Arrays;
-
 /**
  * ------------------------------------------------------------------------------------------------
  * Алгоритм Рабина — Карпа
@@ -67,116 +65,54 @@ import java.util.Arrays;
  * <a href="https://youtu.be/-iNb4_9iFNs">Ссылка на видео</>
  * ------------------------------------------------------------------------------------------------
  */
-public class SearchSubstringRabinKarp2 {
+public class SearchSubstringByRabinKarp1 {
 
     public static final int BASE = 31;
     public static final int Q = 2147483647; // 2^(31 - 1)
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(
-                searchFirstSubstring("Awesome apple", "some")));
-        System.out.println(Arrays.toString(
-                searchFirstSubstring("Awesome apple", "some", "weso")));
-        System.out.println(Arrays.toString(
-                searchFirstSubstring("Awesome apple", "some", "wsso")));
-        System.out.println(Arrays.toString(
-                searchFirstSubstring("Awesome apple", "pple", "some", "weso")));
-        System.out.println(Arrays.toString(
-                searchFirstSubstring("Awesome apple", "apple", "apple", "apple")));
-        System.out.println(Arrays.toString(
-                searchFirstSubstring("Awesome apple", "xxxx", "yyyy", "appl")));
+        String text = "Awesome apple";
+
+        String subText = "some";
+        String subText2 = "ple";
+        String subText3 = "xxx";
+        System.out.println(searchText(text, subText));
+        System.out.println(searchText(text, subText2));
+        System.out.println(searchText(text, subText3));
     }
 
-    public static int gornerScheme(char[] sym, int start, int end) {
-        int result = (int) (sym[start]);
-        for (int i = start; i < end - 1; i++) {
-            result = result * BASE + (int) sym[i + 1];
+    public static int gornerScheme(String text) {
+        int result = text.charAt(0);
+        for (int i = 0; i < text.length() - 1; i++) {
+            result = result * BASE + text.charAt(i + 1);
         }
         return result;
     }
 
-    public static int hash(char[] sym, int start, int end) {
-        return gornerScheme(sym, start, end) % Q;
+    public static int hash(String text) {
+        return gornerScheme(text) % Q;
     }
 
-    /**
-     * Возвращает индекс первого вхождения в строку baseText одной из строк массива subStrings
-     * и индекс элемента этого массива
-     */
-    public static int[] searchFirstSubstring(String baseText, String... subStrings) {
-        if (!checkEqualsLength(subStrings)) {
-            throw new IllegalArgumentException("substrings must be the same length");
-        }
-        int[] result = new int[] { -1, -1 };
-        int[] hashArray = new int[subStrings.length];
-        for (int i = 0; i < hashArray.length; i++) {
-            hashArray[i] = hash(subStrings[i].toCharArray(), 0, subStrings[i].length());
-        }
-        char[] sym = baseText.toCharArray();
-        int start = 0;
-        int m = subStrings[0].length();
-        int end = start + m;
-        int partTextHash = hash(sym, start, end);
-        int rm = basePow(m - 1); // rm = BASE^(m - 1)
+    public static int searchText(String text, String subText) {
+        int subHash = hash(subText);
+        int m = subText.length();
+        int currentHash = hash(text.substring(0, m));
+        int rm = (int) Math.pow(BASE, m - 1); // rm = BASE^(m - 1)
 
-        for (;;) {
-            int[] someHash = findSomeHash(partTextHash, hashArray);
-            if (someHash.length > 0) {
-                String text = new String(sym, start, m);
-                for (int i = 0; i < someHash.length; i++) {
-                    if (text.equals(subStrings[someHash[i]])) {
-                        result[0] = start;
-                        result[1] = someHash[i];
-                        return result;
-                    }
+        int i = 0;
+        while (true) {
+            if (subHash == currentHash) {
+                if (subText.equals(text.substring(i, i + m))) {
+                    return i;
                 }
             }
-            start++;
-            end++;
-            if (end > sym.length) {
+            if (i + m >= text.length()) {
                 break;
             }
-            // 'start' - inclusive, 'end' - exclusive
-            partTextHash = ((partTextHash - rm * (int) sym[start - 1]) * BASE + sym[end - 1]) % Q;
+//            currentHash = ((currentHash - text.charAt(i) * (int)Math.pow(BASE, m - 1)) * BASE + text.charAt(m + i)) % Q;
+            currentHash = ((currentHash - text.charAt(i) * rm) * BASE + text.charAt(m + i)) % Q;
+            i++;
         }
-        return result;
-    }
-
-    public static int basePow(int n) {
-        if (n == 0) {
-            return 1;
-        }
-        int result = 1;
-        for (int i = 0; i < n; i++) {
-            result *= BASE;
-        }
-        return result;
-    }
-
-    public static int[] findSomeHash(int hash, int[] subHashs) {
-        int n = 0;
-        for (int i = 0; i < subHashs.length; i++) {
-            if (subHashs[i] == hash) {
-                n += 1;
-            }
-        }
-        int[] result = new int[n];
-        int insertIndex = 0;
-        for (int i = 0; i < subHashs.length; i++) {
-            if (subHashs[i] == hash) {
-                result[insertIndex++] = i;
-            }
-        }
-        return result;
-    }
-
-    public static boolean checkEqualsLength(String[] texts) {
-        int l = texts[0].length();
-        for (int i = 1; i < texts.length; i++) {
-            if (texts[i].length() != l) {
-                return false;
-            }
-        }
-        return true;
+        return -1;
     }
 }
