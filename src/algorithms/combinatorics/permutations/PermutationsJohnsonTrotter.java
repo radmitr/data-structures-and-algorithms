@@ -40,19 +40,23 @@ import java.util.Arrays;
  *
  * 1) Создается первая перестановка. Ряд чисел по возрастанию 1, 2, 3, … n. Направление каждого
  *    элемента указывает влево.
+ *
  * 2) Ищем наибольший мобильный элемент. Если не находим, то алгоритм закончен.
+ *
  * 3) Производим обмен найденного мобильного элемента с элементом, на который указывает
  *    направление найденного мобильного элемента.
- * 4) Меняем направление у всех элементов, которые больше чем найденный на шаге 2 элемент.
+ *
+ * 4) Меняем направление у всех элементов, которые больше, чем найденный на шаге 2 элемент.
+ *
  * 5) Переходим к шагу 2.
  * ------------------------------------------------------------------------------------------------
  * <a href="https://youtu.be/6L5mm_e3Hms">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class JohnsonTrotter {
+public class PermutationsJohnsonTrotter {
 
     public static void main(String[] args) {
-        permutationGenerator(4);
+        generatePermutations(4);
     }
 
     public static int findMaxMobileElement(int[] permutation, int[] direction) {
@@ -92,7 +96,7 @@ public class JohnsonTrotter {
         direction[j] = directionTemp;
     }
 
-    public static void permutationGenerator(int n) {
+    public static void generatePermutations(int n) {
         int[] permutation = new int[n];
         int[] direction = new int[n];
         for (int i = 0; i < permutation.length; i++) {
