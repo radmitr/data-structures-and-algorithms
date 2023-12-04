@@ -49,7 +49,7 @@ import java.util.Arrays;
  * <a href="https://youtu.be/6L5mm_e3Hms">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class JohnsonTrotterAlgorithm {
+public class JohnsonTrotter {
 
     public static void main(String[] args) {
         permutationGenerator(4);
