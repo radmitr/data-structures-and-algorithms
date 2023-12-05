@@ -1,4 +1,4 @@
-package algorithms.sorts.merge_sort.recursive;
+package algorithms.sorts.merge_sort;
 
 import java.util.Arrays;
 
@@ -24,7 +24,7 @@ import java.util.Arrays;
  * <a href="https://youtu.be/pjI5tV6OasI">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class MergeSort1 {
+public class MergeSortRecursive1 {
 
     public static void main(String[] args) {
         // 1 - array

@@ -1,6 +1,7 @@
-package algorithms.sorts.merge_sort.iterative;
+package algorithms.sorts.merge_sort;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -27,53 +28,43 @@ import java.util.Arrays;
  * <a href="https://youtu.be/grydAs8Pi44">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class MergeSort1 {
+public class MergeSortCyclic2 {
 
     public static void main(String[] args) {
-        // 1 - array
-        int[] array = { 5, 0, -2, 7, 3 };
+        String[] array = { "Python", "Ada", "Java", "C", "Fortran" };
+        Comparator<String> comp = (a, b) -> a.length() - b.length();
+        mergeSort(array, comp);
         System.out.println(Arrays.toString(array));
-
-        mergeSort(array);
-        System.out.println(Arrays.toString(array));
-        System.out.println();
-
-        // 2 - array2
-        int[] array2 = { 5, 0, -2, 7, 3, -40, 30, -24, 15, 7, 8, 9, 8, 7, 1 };
-        System.out.println(Arrays.toString(array2));
-
-        mergeSort(array2);
-        System.out.println(Arrays.toString(array2));
     }
 
-    public static void mergeSort(int[] array) {
-        int[] supportArray = Arrays.copyOf(array, array.length);
+    public static <T> void mergeSort(T[] array, Comparator<T> comp) {
+        T[] support = Arrays.copyOf(array, array.length);
         int n = array.length;
         for (int size = 1; size < n; size *= 2) {
             for (int j = 0; j < n - size; j += 2 * size) {
-                merge(array, supportArray, j, j + size - 1, j + size, Math.min(j + 2 * size - 1, n - 1));
+                merge(array, support, comp, j, j + size - 1, j + size, Math.min(j + 2 * size - 1, n - 1));
             }
         }
     }
 
-    public static void merge(int[] array, int[] supportArray, int ls, int le, int rs, int re) {
+    public static <T> void merge(T[] array, T[] support, Comparator<T> comp, int ls, int le, int rs, int re) {
         for (int i = ls; i <= re; i++) {
-            supportArray[i] = array[i];
+            support[i] = array[i];
         }
         int l = ls;
         int r = rs;
         for (int i = ls; i <= re; i++) {
             if (l > le) {
-                array[i] = supportArray[r];
+                array[i] = support[r];
                 r++;
             } else if (r > re) {
-                array[i] = supportArray[l];
+                array[i] = support[l];
                 l++;
-            } else if (supportArray[l] < supportArray[r]) {
-                array[i] = supportArray[l];
+            } else if (comp.compare(support[l], support[r]) < 0) {
+                array[i] = support[l];
                 l++;
             } else {
-                array[i] = supportArray[r];
+                array[i] = support[r];
                 r++;
             }
         }
