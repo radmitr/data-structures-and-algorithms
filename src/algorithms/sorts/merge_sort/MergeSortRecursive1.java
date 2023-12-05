@@ -46,8 +46,8 @@ public class MergeSortRecursive1 {
     public static void mergeSort(int[] array) {
         int[] support = Arrays.copyOf(array, array.length);
         int startIndex = 0;
-        int stopIndex = support.length - 1;
-        mergeSort(array, support, startIndex, stopIndex);
+        int endIndex = support.length - 1;
+        mergeSort(array, support, startIndex, endIndex);
     }
 
     public static void mergeSort(int[] array, int[] support, int startIndex, int endIndex) {
