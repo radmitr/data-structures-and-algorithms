@@ -1,4 +1,4 @@
-package algorithms.sorts.sorting_algoritms_adoptation;
+package algorithms.sorts.adoptation;
 
 /**
  * ------------------------------------------------------------------------------------------------
