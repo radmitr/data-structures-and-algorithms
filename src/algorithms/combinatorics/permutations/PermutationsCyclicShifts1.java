@@ -38,7 +38,7 @@ import java.util.Arrays;
  * <a href="https://youtu.be/oK8A7eIWXF8">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class PermutationsCyclicShifts {
+public class PermutationsCyclicShifts1 {
 
     public static void main(String[] args) {
         int[] array = { 0, 1, 2, 3 };
