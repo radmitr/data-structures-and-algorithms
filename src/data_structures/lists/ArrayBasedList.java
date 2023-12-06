@@ -98,22 +98,10 @@ import java.util.Arrays;
  */
 public class ArrayBasedList {
 
-    public static void main(String[] args) {
-        ArrayBasedList list = new ArrayBasedList();
-        for (int i = 0; i < 12; i++) {
-            list.add(i);
-        }
-        System.out.println(list);
-        list.trimToSize();
-        System.out.println(list);
-        list.add(-5);
-        System.out.println(list);
-    }
-
+    private static final int DEFAULT_CAPACITY = 10;
     private int[] dataArray;
     private int size;
     private int capacity;
-    private final int DEFAULT_CAPACITY = 10;
 
     public ArrayBasedList() {
         dataArray = new int[DEFAULT_CAPACITY];
@@ -183,14 +171,52 @@ public class ArrayBasedList {
 
     @Override
     public String toString() {
-        String result = "[";
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
         for (int i = 0; i < size; i++) {
             if (i < size - 1) {
-                result += dataArray[i] + ", ";
+                sb.append(dataArray[i]).append(", ");
             } else {
-                result += dataArray[i];
+                sb.append(dataArray[i]);
             }
         }
-        return result += "]";
+        sb.append("]");
+        return sb.toString();
+    }
+
+    //=============================================================================================
+    public static void main(String[] args) {
+        ArrayBasedList list = new ArrayBasedList();
+
+        // 1 - add()
+        for (int i = 0; i < 12; i++) {
+            list.add(i);
+        }
+        System.out.println(list);
+
+        list.add(-5);
+        System.out.println(list);
+
+        // 2 - addByIndex()
+        list.addByIndex(-15, 0);
+        System.out.println(list);
+
+        // 3 - deleteByIndex()
+        list.deleteByIndex(0);
+        System.out.println(list);
+
+        list.deleteByIndex(7);
+        System.out.println(list);
+
+        // 4 - trimToSize()
+        list.trimToSize();
+        System.out.println(list);
+
+        // 5 - size()
+        System.out.println(list.size());
+
+        // 6 - clear()
+        list.clear();
+        System.out.println(list);
     }
 }
