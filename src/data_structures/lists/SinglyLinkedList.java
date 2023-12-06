@@ -131,7 +131,7 @@ class SinglyLinkedList {
     private Node head;
 
     public SinglyLinkedList() {
-        head = new Node();
+        head = new Node(); // фиктивный узел
     }
 
     private class Node {
@@ -168,75 +168,79 @@ class SinglyLinkedList {
         if (head.next == null) {
             return;
         }
-        Node curretNode = head.next;
+        Node currentNode = head.next;
         Node previousNode = head;
-        while (curretNode.next != null) {
-            previousNode = curretNode;
-            curretNode = curretNode.next;
+        while (currentNode.next != null) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
         }
         previousNode.next = null;
     }
 
     public void insertByIndex(int value, long index) {
         long nodeNumber = 0;
-        for (Node currentNode = head; currentNode != null; currentNode = currentNode.next) {
+        Node currentNode = head;
+        while (currentNode != null) {
             if (nodeNumber == index) {
                 currentNode.next = new Node(value, currentNode.next);
                 return;
             }
-            nodeNumber += 1L;
+            nodeNumber++;
+            currentNode = currentNode.next;
         }
         throw new IndexOutOfBoundsException();
     }
 
     public void deleteByIndex(long index) {
         long nodeNumber = 0;
-        Node curretNode = head.next;
+        Node currentNode = head.next;
         Node previousNode = head;
-        while (curretNode != null) {
+        while (currentNode != null) {
             if (nodeNumber == index) {
-                previousNode.next = curretNode.next;
-                curretNode.next = null;
+                previousNode.next = currentNode.next;
+                currentNode.next = null;
                 return;
             }
-            previousNode = curretNode;
-            nodeNumber += 1;
-            curretNode = curretNode.next;
+            previousNode = currentNode;
+            nodeNumber++;
+            currentNode = currentNode.next;
         }
         throw new IndexOutOfBoundsException();
     }
 
     public int getByIndex(long index) {
         long nodeNumber = 0;
-        Node curretNode = head.next;
-        while (curretNode != null) {
+        Node currentNode = head.next;
+        while (currentNode != null) {
             if (nodeNumber == index) {
-                return curretNode.date;
+                return currentNode.date;
             }
-            nodeNumber += 1L;
-            curretNode = curretNode.next;
+            nodeNumber++;
+            currentNode = currentNode.next;
         }
         throw new IndexOutOfBoundsException();
     }
 
     public void setByIndex(int value, long index) {
         long nodeNumber = 0;
-        Node curretNode = head.next;
-        while (curretNode != null) {
+        Node currentNode = head.next;
+        while (currentNode != null) {
             if (nodeNumber == index) {
-                curretNode.date = value;
+                currentNode.date = value;
                 return;
             }
-            nodeNumber += 1L;
-            curretNode = curretNode.next;
+            nodeNumber++;
+            currentNode = currentNode.next;
         }
         throw new IndexOutOfBoundsException();
     }
 
     public long getLength() {
         long size = 0;
-        for (Node currentNode = head.next; currentNode != null; currentNode = currentNode.next) {
-            size += 1L;
+        Node currentNode = head.next;
+        while (currentNode != null) {
+            size++;
+            currentNode = currentNode.next;
         }
         return size;
     }
@@ -257,8 +261,18 @@ class SinglyLinkedList {
         // 1 - addFirst() and addLast()
         list.addFirst(5);
         list.addFirst(2);
+        list.addFirst(-17);
         list.addLast(7);
         list.addLast(4);
+        list.addLast(-8);
+        System.out.println(list);
+
+        // 2 - deleteFirst()
+        list.deleteFirst();
+        System.out.println(list);
+
+        // 3 - deleteLast()
+        list.deleteLast();
         System.out.println(list);
 
         // 2 - deleteByIndex()
@@ -267,13 +281,13 @@ class SinglyLinkedList {
         System.out.println(list);
 
         // 3 - getByIndex()
-        System.out.println(list.getByIndex(0));
-        System.out.println(list.getByIndex(1));
-        System.out.println(list.getByIndex(2));
+        System.out.println(list.getByIndex(0)); // 2
+        System.out.println(list.getByIndex(1)); // 5
+        System.out.println(list.getByIndex(2)); // 4
 //        System.out.println(list.getByIndex(3)); // java.lang.IndexOutOfBoundsException
 
         // 4 - insertByIndex()
-        list.insertByIndex(-3, 0);
+        list.insertByIndex(-3, 1);
         System.out.println(list);
 
         // 5 - setByIndex()
