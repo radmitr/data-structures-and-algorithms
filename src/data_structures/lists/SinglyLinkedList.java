@@ -135,14 +135,14 @@ class SinglyLinkedList {
     }
 
     private class Node {
-        int date;
+        int data;
         Node next;
 
         public Node() {
         }
 
-        public Node(int date, Node next) {
-            this.date = date;
+        public Node(int data, Node next) {
+            this.data = data;
             this.next = next;
         }
     }
@@ -177,7 +177,7 @@ class SinglyLinkedList {
         previousNode.next = null;
     }
 
-    public void insertByIndex(int value, long index) {
+    public void insertByIndex(long index, int value) {
         long nodeNumber = 0;
         Node currentNode = head;
         while (currentNode != null) {
@@ -213,7 +213,7 @@ class SinglyLinkedList {
         Node currentNode = head.next;
         while (currentNode != null) {
             if (nodeNumber == index) {
-                return currentNode.date;
+                return currentNode.data;
             }
             nodeNumber++;
             currentNode = currentNode.next;
@@ -221,12 +221,12 @@ class SinglyLinkedList {
         throw new IndexOutOfBoundsException();
     }
 
-    public void setByIndex(int value, long index) {
+    public void setByIndex(long index, int value) {
         long nodeNumber = 0;
         Node currentNode = head.next;
         while (currentNode != null) {
             if (nodeNumber == index) {
-                currentNode.date = value;
+                currentNode.data = value;
                 return;
             }
             nodeNumber++;
@@ -248,15 +248,18 @@ class SinglyLinkedList {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("[head -> ");
         for (Node currentNode = head.next; currentNode != null; currentNode = currentNode.next) {
-            sb.append(currentNode.date).append(" -> ");
+            sb.append(currentNode.data).append(" -> ");
         }
+        sb.append("null]");
         return sb.toString();
     }
 
     //=============================================================================================
     public static void main(String[] args) {
         SinglyLinkedList list = new SinglyLinkedList();
+        System.out.println(list);
 
         // 1 - addFirst() and addLast()
         list.addFirst(5);
@@ -287,11 +290,11 @@ class SinglyLinkedList {
 //        System.out.println(list.getByIndex(3)); // java.lang.IndexOutOfBoundsException
 
         // 4 - insertByIndex()
-        list.insertByIndex(-3, 1);
+        list.insertByIndex(1, -3);
         System.out.println(list);
 
         // 5 - setByIndex()
-        list.setByIndex(-1, 2);
+        list.setByIndex(2, -1);
         System.out.println(list);
     }
 }
