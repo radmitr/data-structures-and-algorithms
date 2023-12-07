@@ -125,10 +125,11 @@ public class DoublyLinkedList {
             this.prev = prev;
         }
 
-        @Override
-        public String toString() {
-            return "Node [data=" + data + ", next=" + next + ", prev=" + prev + "]";
-        }
+        // comment out for debugging
+//        @Override
+//        public String toString() {
+//            return "Node [data=" + data + ", next=" + next + ", prev=" + prev + "]";
+//        }
     }
 
     public void addFirst(Object value) {
@@ -233,6 +234,10 @@ public class DoublyLinkedList {
     }
 
     public long getLength() {
+        return length;
+    }
+
+    public long getLengthWithPass() {
         long length = 0;
         Node currentNode = head.next;
         while (currentNode != tail) {
@@ -250,31 +255,58 @@ public class DoublyLinkedList {
 
     @Override
     public String toString() {
-        String result = "[";
-        Node currentNode = head.next;
-        while (currentNode != tail) {
-            result += currentNode.data + " ";
-            currentNode = currentNode.next;
+        StringBuilder sb = new StringBuilder();
+        sb.append("[head <-> ");
+        for (Node currentNode = head.next; currentNode != tail; currentNode = currentNode.next) {
+            sb.append(currentNode.data).append(" <-> ");
         }
-        return result += "]";
+        sb.append("tail]");
+        return sb.toString();
     }
 
     // ============================================================================================
     public static void main(String[] args) {
         DoublyLinkedList list = new DoublyLinkedList();
+
+        // 1 - addFirst() and addLast()
         list.addFirst(3);
         list.addLast(7);
         list.addLast(11);
         list.addLast(13);
         list.addLast(17);
         list.addLast(19);
+        list.addFirst(1);
         System.out.println(list);
 
+        // 2 - getLength() and getLengthWithPass()
+        System.out.println(list.getLength());
+        System.out.println(list.getLengthWithPass());
+
+        // 3 - setByIndex()
         list.setByIndex(2, -2);
         System.out.println(list);
 
-        list.clear();
+        // 4 - removeFirst()
+        list.removeFirst();
+        System.out.println(list);
 
+        // 5 - removeLast()
+        list.removeLast();
+        System.out.println(list);
+
+        // 6 - getByIndex()
+        System.out.println(list.getByIndex(2));
+
+        // 7 - removeByIndex()
+        list.removeByIndex(2);
+        System.out.println(list);
+
+        // 8 - insertByIndex()
+        list.insertByIndex(2, 111);
+        System.out.println(list);
+
+        // 9 - clear()
+        list.clear();
         System.out.println(list);
     }
 }
