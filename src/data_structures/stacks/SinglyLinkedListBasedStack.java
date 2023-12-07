@@ -133,7 +133,7 @@ class SinglyLinkedListBasedStack {
         // 2 - peek() and pop()
         while (stack.peek() != null) {
             System.out.println(stack.pop());
+            System.out.println(stack);
         }
-        System.out.println(stack);
     }
 }
