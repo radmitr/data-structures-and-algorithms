@@ -125,11 +125,10 @@ public class DoublyLinkedList {
             this.prev = prev;
         }
 
-        // comment out for debugging
-//        @Override
-//        public String toString() {
-//            return "Node [data=" + data + ", next=" + next + ", prev=" + prev + "]";
-//        }
+        @Override
+        public String toString() {
+            return "Node [data=" + data + "]";
+        }
     }
 
     public void addFirst(Object value) {
