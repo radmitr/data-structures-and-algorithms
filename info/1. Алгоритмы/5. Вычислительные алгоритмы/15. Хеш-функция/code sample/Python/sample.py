@@ -13,7 +13,7 @@ class HashService:
         self.m = key_range // collision_level
         for k in self.prime_number.keys():
             if self.m < k:
-                self.m = k
+                self.m = self.prime_number.get(k)
                 break
     
     def generate_hash(self, text):
