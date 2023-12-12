@@ -87,7 +87,7 @@ import java.util.Random;
  * <a href="https://youtu.be/mXu-erfSBDE">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class TableHash {
+public class TransitionsTableHash {
 
     public static void main(String[] args) {
         int[] fixedHashTable = {
