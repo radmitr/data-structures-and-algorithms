@@ -62,7 +62,7 @@ package data_structures.queues;
  * Получение размера очереди
  *
  * Для получения размера очереди стоит объявить переменную с начальным значением 0. Начиная
- * с начала очереди добавляем к значению head и этой переменной единицу, до тех пор пока head не
+ * с начала очереди, добавляем к значению head и этой переменной единицу до тех пор, пока head не
  * станет равно tail. Вернуть значение переменной.
  * ------------------------------------------------------------------------------------------------
  * <a href="https://youtu.be/Ptk3KCAU5Vc">Ссылка на видео</a>
@@ -85,16 +85,16 @@ public class ArrayBasedQueue {
 
     public void enqueue(Object value) {
         if ((tail + 1) % data.length == head) {
-            increaseSize();
+            upResize();
         }
         data[tail] = value;
         tail = (tail + 1) % data.length;
         size++;
     }
 
-    private void increaseSize() {
+    private void upResize() {
         if (data.length >= Integer.MAX_VALUE - 10) {
-            throw new IllegalArgumentException("can't increase the size");
+            throw new IllegalArgumentException("Can not increase the size");
         }
         Object[] newArray = new Object[Math.min(Integer.MAX_VALUE - 10, (int) (data.length * 4L / 3L + 1L))];
         int addIndex = 0;
@@ -109,7 +109,6 @@ public class ArrayBasedQueue {
         data = newArray;
         head = 0;
         tail = addIndex;
-        size = tail;
     }
 
     public Object dequeue() {
