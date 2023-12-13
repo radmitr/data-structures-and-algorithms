@@ -107,7 +107,7 @@ class ArrayBasedStack {
         if (size >= capacity) {
             boolean resizeResult = upResize();
             if (!resizeResult) {
-                throw new RuntimeException("Cannot add element");
+                throw new RuntimeException("Can not add an element");
             }
         }
         dataArray[size] = value;
