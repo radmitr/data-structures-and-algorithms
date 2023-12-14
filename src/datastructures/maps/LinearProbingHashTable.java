@@ -1,4 +1,4 @@
-package data_structures.maps;
+package datastructures.maps;
 
 import java.util.Arrays;
 import java.util.Random;

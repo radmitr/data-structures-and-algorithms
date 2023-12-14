@@ -1,4 +1,4 @@
-package data_structures.lists;
+package datastructures.lists;
 
 import java.util.Arrays;
 

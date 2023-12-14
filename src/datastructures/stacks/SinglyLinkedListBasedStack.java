@@ -1,4 +1,4 @@
-package data_structures.stacks;
+package datastructures.stacks;
 
 /**
  * ------------------------------------------------------------------------------------------------

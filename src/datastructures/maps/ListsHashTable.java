@@ -1,6 +1,6 @@
-package data_structures.maps;
+package datastructures.maps;
 
-import data_structures.lists.DoublyLinkedList;
+import datastructures.lists.DoublyLinkedList;
 
 /**
  * ------------------------------------------------------------------------------------------------

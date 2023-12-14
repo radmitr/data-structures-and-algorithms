@@ -1,48 +1,39 @@
-package data_structures.graphs;
+package datastructures.graphs;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * ------------------------------------------------------------------------------------------------
- * Поиск в глубину
+ * Поиск в ширину для графов
  * ------------------------------------------------------------------------------------------------
- * Поиск в глубину (Depth-first search, DFS) — один из способов полного обхода графа,
- * особенностью которого является перебор вершин в порядке наискорейшего удаления от стартовой.
- * Это достигается за счет рекурсивного перебора вершин по следующему алгоритму - перебираем все
- * исходящие из рассматриваемой вершины рёбра. Если ребро ведёт в вершину, которая не была
- * рассмотрена ранее, то запускаем алгоритм от этой не рассмотренной вершины, а после
- * возвращаемся и продолжаем перебирать рёбра. Возврат происходит в том случае, если в
- * рассматриваемой вершине не осталось рёбер, которые ведут в не рассмотренную вершину.
+ * Поиск в ширину (breadth-first search, BFS) — один из методов обхода графа. Особенностью является
+ * поочередный обход ближайших вершин к стартовой. В отличие от поиска в глубину, сначала
+ * обрабатываются все вершины, смежные данной, а только потом происходит переход. Для решения
+ * подобной задачи используется тот же подход (цветовая маркировка), как и для поиска в глубину.
  * ------------------------------------------------------------------------------------------------
- * Как избежать бесконечного рекурсивного вызова
+ * Наиболее простая реализация
  *
- * Как избежать бесконечного рекурсивного вызова? Например, если переходить по всем ребрам из
- * вершины c то опять будет выполнен переход в вершину b. Для этого предлагается ввести цветовую
- * маркировку вершины. Вершина, которая еще не была посещена, «окрашивается» в белый цвет.
- * Вершина, которая уже была посещена — в черный. В таком случае, если вершина окрашена в черный,
- * то она уже посещена и выполнять к ней переход уже не нужно.
- * ------------------------------------------------------------------------------------------------
- * Полный алгоритм поиска в глубину
- *
- * В случае если граф связный, то просто выбирается вершина в качестве стартовой, и
- * выполняется рекурсивный обход с учетом цветовой маркировки.
- * Если граф не связный, то в качестве стартовой вершины выбираются все «белые» вершины по
- * очереди. Выбранная вершина используется в качестве стартовой.
+ * В отличие от поиска в глубину, поиск в ширину реализуется обычным циклическим алгоритмом
+ * без применения рекурсии. Для этого используют очередь, в которую добавляют все вершины смежные
+ * данной и имеющие белый цвет, после этого начинают извлекать и обрабатывать вершины из этой
+ * очереди. Алгоритм заканчивается, когда очередь становиться пустой.
  * ------------------------------------------------------------------------------------------------
  * Проверка графа на связность
  *
- * Поиск в глубину можно использовать для проверки графа на связность. Достаточно запустить
- * поиск в глубину (указывая в качестве стартовой любую вершину) и после него проверить все вершины
- * на цвет. Если все вершины поменяли цвет, то граф связный, если остались «белого цвета», то граф
- * не связный.
+ * Поиск в ширину также можно использовать для проверки графа на связность. Достаточно
+ * запустить поиск в ширину (указывая в качестве стартовой любую вершину) и после него проверить
+ * все вершины на цвет. Если все вершины поменяли цвет, то граф связный, если остались
+ * «белого цвета», то граф не связный.
  * ------------------------------------------------------------------------------------------------
- * <a href="https://youtu.be/NY5Fs15ad6Q">Ссылка на видео</a>
+ * <a href="https://youtu.be/s_oXy8TUPg0">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class GraphAdjacencyListDFS {
+public class GraphAdjacencyListBFS {
 
     private final Map<String, Node> nodes = new HashMap<>();
 
@@ -74,7 +65,7 @@ public class GraphAdjacencyListDFS {
         Node nodeFrom = nodes.get(idFrom);
         Node nodeTo = nodes.get(idTo);
         if (nodeFrom == null || nodeTo == null) {
-            throw new IllegalArgumentException("Node with this ID does not exist");
+            throw new IllegalArgumentException("Node with this id does not exist");
         }
         if (nodeFrom == nodeTo) {
             throw new IllegalArgumentException("Loop edge");
@@ -98,7 +89,7 @@ public class GraphAdjacencyListDFS {
         Node nodeFrom = nodes.get(idFrom);
         Node nodeTo = nodes.get(idTo);
         if (nodeFrom == null || nodeTo == null) {
-            throw new IllegalArgumentException("Node with this ID does not exist");
+            throw new IllegalArgumentException("Node with this id does not exist");
         }
         nodeFrom.adjacentNodes.remove(nodeTo);
         nodeTo.adjacentNodes.remove(nodeFrom);
@@ -113,7 +104,7 @@ public class GraphAdjacencyListDFS {
         return nodeFrom.adjacentNodes.contains(nodeTo);
     }
 
-    public String[] getAdjacentNodesIds(String id) {
+    public String[] getAdjacentNodesId(String id) {
         Node node = nodes.get(id);
         if (node == null) {
             return null;
@@ -141,36 +132,34 @@ public class GraphAdjacencyListDFS {
         node.data = data;
     }
 
-    /**
-     * Функкия обхода графа
-     */
-    public void dfs(Node startNode) {
-        if (startNode.color == 1) {
-            return;
-        }
-        startNode.color = 1;
-        for (Node node : startNode.adjacentNodes) {
-            dfs(node);
+    public void bfs(Node startNode) {
+        Deque<Node> nodeDeque = new ArrayDeque<>();
+        nodeDeque.push(startNode);
+        while (nodeDeque.size() > 0) {
+            Node currentNode = nodeDeque.poll();
+            for (Node node : currentNode.adjacentNodes) {
+                if (node.color == 0) {
+                    nodeDeque.push(node);
+                }
+            }
+            currentNode.color = 1;
         }
     }
 
-    /**
-     * Функкия для старта обхода графа
-     */
-    public void dfs(String startNodeId) {
+    public void bfs(String startNodeId) {
         Node node = nodes.get(startNodeId);
         if (node == null) {
             return;
         }
-        dfs(node);
+        bfs(node);
     }
 
     public boolean isConnectedGraph() {
         boolean result = true;
         repaintNodesToWhiteColor();
         for (String nodeId : nodes.keySet()) {
-            // запускаем DFS на первом попавшемся ключе nodeId из множестве и выходим из цикла
-            dfs(nodes.get(nodeId));
+            // запускаем BFS на первом попавшемся ключе nodeId из множестве и выходим из цикла
+            bfs(nodes.get(nodeId));
             break;
         }
         // если хотя бы одна вершина осталась белая, то граф несвязный
@@ -202,9 +191,9 @@ public class GraphAdjacencyListDFS {
         return result;
     }
 
-    //===========================================================================
+    //==================================================================================
     public static void main(String[] args) {
-        GraphAdjacencyListDFS graph = new GraphAdjacencyListDFS();
+        GraphAdjacencyListBFS graph = new GraphAdjacencyListBFS();
 
         graph.addNode("a");
         graph.addNode("b");
@@ -225,6 +214,5 @@ public class GraphAdjacencyListDFS {
         graph.removeEdge("a", "d");
         System.out.println(graph);
         System.out.println(graph.isConnectedGraph());
-        System.out.println();
     }
 }

@@ -1,4 +1,4 @@
-package data_structures.graphs;
+package datastructures.graphs;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
