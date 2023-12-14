@@ -60,15 +60,15 @@ public class GnomeSort {
         while (i < array.length - 1) {
             if (array[i] <= array[i + 1]) {
                 i = index;
-                index += 1;
+                index++;
             } else {
                 int temp = array[i];
                 array[i] = array[i + 1];
                 array[i + 1] = temp;
-                i = i - 1;
+                i--;
                 if (i < 0) {
                     i = index;
-                    index += 1;
+                    index++;
                 }
             }
         }
