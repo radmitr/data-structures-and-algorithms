@@ -140,11 +140,11 @@ public class ListsHashTable {
         }
     }
 
-    private class Node {
+    private class Pair {
         String key;
         Object value;
 
-        public Node(String key, Object value) {
+        public Pair(String key, Object value) {
             this.key = key;
             this.value = value;
         }
@@ -154,16 +154,16 @@ public class ListsHashTable {
         int n = Math.abs(key.hashCode() % capacity);
         boolean isNewNode = true;
         for (int i = 0; i < hashTable[n].getLength(); i++) {
-            Node node = (Node) hashTable[n].getByIndex(i);
-            if (node.key.equals(key)) {
-                node.value = value;
+            Pair pair = (Pair) hashTable[n].getByIndex(i);
+            if (pair.key.equals(key)) {
+                pair.value = value;
                 isNewNode = false;
 //                System.out.println(key + ":" + value + ", (index=" + n + ")"); // трассировка
                 break;
             }
         }
         if (isNewNode) {
-            hashTable[n].addLast(new Node(key, value));
+            hashTable[n].addLast(new Pair(key, value));
 //            System.out.println(key + ":" + value + ", (index=" + n + ")"); // трассировка
             size++;
         }
@@ -186,22 +186,25 @@ public class ListsHashTable {
     public Object get(String key) {
         int n = Math.abs(key.hashCode() % capacity);
         for (int i = 0; i < hashTable[n].getLength(); i++) {
-            Node node = (Node) hashTable[n].getByIndex(i);
-            if (node.key.equals(key)) {
-                return node.value;
+            Pair pair = (Pair) hashTable[n].getByIndex(i);
+            if (pair.key.equals(key)) {
+                return pair.value;
             }
         }
         return null;
     }
 
-    public void remove(String key) {
+    public boolean remove(String key) {
         int n = Math.abs(key.hashCode() % capacity);
         for (int i = 0; i < hashTable[n].getLength(); i++) {
-            Node node = (Node) hashTable[n].getByIndex(i);
-            if (node.key.equals(key)) {
+            Pair pair = (Pair) hashTable[n].getByIndex(i);
+            if (pair.key.equals(key)) {
                 hashTable[n].removeByIndex(i);
+                size--;
+                return true;
             }
         }
+        return false;
     }
 
     public void upResize() {
@@ -212,9 +215,9 @@ public class ListsHashTable {
         }
         for (int i = 0; i < hashTable.length; i++) {
             for (int j = 0; j < hashTable[i].getLength(); j++) {
-                Node node = (Node) hashTable[i].getByIndex(j);
-                int n = Math.abs(node.key.hashCode() % capacity);
-                newHashTable[i].addLast(node);
+                Pair pair = (Pair) hashTable[i].getByIndex(j);
+                int n = Math.abs(pair.key.hashCode() % capacity);
+                newHashTable[i].addLast(pair);
             }
         }
         hashTable = newHashTable;
@@ -226,8 +229,8 @@ public class ListsHashTable {
         if (size > 0) {
             for (int i = 0; i < hashTable.length; i++) {
                 for (int j = 0; j < hashTable[i].getLength(); j++) {
-                    Node node = (Node) hashTable[i].getByIndex(j);
-                    sb.append(node.key).append(":").append(node.value).append(", ");
+                    Pair pair = (Pair) hashTable[i].getByIndex(j);
+                    sb.append(pair.key).append(":").append(pair.value).append(", ");
                 }
             }
             sb.delete(sb.length() - 2, sb.length());
@@ -265,6 +268,7 @@ public class ListsHashTable {
         hashTable.put("ten", 10);
         hashTable.put("eleven", 11);
         hashTable.put("twelve", 12);
+        hashTable.put("zero", 0);
         System.out.println(hashTable);
     }
 }
