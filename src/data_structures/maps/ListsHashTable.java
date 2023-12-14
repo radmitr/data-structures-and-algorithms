@@ -158,11 +158,13 @@ public class ListsHashTable {
             if (node.key.equals(key)) {
                 node.value = value;
                 isNewNode = false;
+//                System.out.println(key + ":" + value + ", (index=" + n + ")"); // трассировка
                 break;
             }
         }
         if (isNewNode) {
             hashTable[n].addLast(new Node(key, value));
+//            System.out.println(key + ":" + value + ", (index=" + n + ")"); // трассировка
             size++;
         }
         if (size > capacity * loadFactor) {
