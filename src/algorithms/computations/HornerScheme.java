@@ -48,18 +48,18 @@ import java.util.Arrays;
  * <a href="https://youtu.be/g5vcdzI6uPg">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class GornerScheme {
+public class HornerScheme {
 
     public static void main(String[] args) {
         double[] polyCoeff = { 5, 1, -3, 2, 5 };
 
-        double result = gornerScheme(polyCoeff, 2);
+        double result = hornerScheme(polyCoeff, 2);
         System.out.println(result);
 
         System.out.println(Arrays.toString(calculateQuotientPolynomial(polyCoeff, 2)));
     }
 
-    public static double gornerScheme(double[] polyCoeff, double c) {
+    public static double hornerScheme(double[] polyCoeff, double c) {
         double result = polyCoeff[0];
         for (int i = 0; i < polyCoeff.length - 1; i++) {
             result = result * c + polyCoeff[i + 1];
