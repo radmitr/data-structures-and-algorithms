@@ -82,7 +82,7 @@ public class SearchSubstringByRabinKarp1 {
         System.out.println(searchText(text, subText3));
     }
 
-    public static int gornerScheme(String text) {
+    public static int hornerScheme(String text) {
         int result = text.charAt(0);
         for (int i = 0; i < text.length() - 1; i++) {
             result = result * BASE + text.charAt(i + 1);
@@ -91,7 +91,7 @@ public class SearchSubstringByRabinKarp1 {
     }
 
     public static int hash(String text) {
-        return gornerScheme(text) % Q;
+        return hornerScheme(text) % Q;
     }
 
     public static int searchText(String text, String subText) {

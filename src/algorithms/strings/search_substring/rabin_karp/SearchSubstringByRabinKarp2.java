@@ -88,7 +88,7 @@ public class SearchSubstringByRabinKarp2 {
                 searchFirstSubstring("Awesome apple", "xxxx", "yyyy", "appl")));
     }
 
-    public static int gornerScheme(char[] sym, int start, int end) {
+    public static int hornerScheme(char[] sym, int start, int end) {
         int result = (int) (sym[start]);
         for (int i = start; i < end - 1; i++) {
             result = result * BASE + (int) sym[i + 1];
@@ -97,7 +97,7 @@ public class SearchSubstringByRabinKarp2 {
     }
 
     public static int hash(char[] sym, int start, int end) {
-        return gornerScheme(sym, start, end) % Q;
+        return hornerScheme(sym, start, end) % Q;
     }
 
     /**
