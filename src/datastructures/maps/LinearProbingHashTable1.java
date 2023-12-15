@@ -155,7 +155,7 @@ import java.util.Random;
  * <a href="https://youtu.be/KPRQuf39ZzQ">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-class LinearProbingHashTable {
+class LinearProbingHashTable1 {
 
     public static final int INITIAL_CAPACITY = 16;
 
@@ -165,7 +165,7 @@ class LinearProbingHashTable {
     public int[] polyCoeff = new int[5]; // для теста public
     private int size = 0;
 
-    public LinearProbingHashTable() {
+    public LinearProbingHashTable1() {
         pairArray = new Pair[capacity];
         calculatePolyCoeff();
     }
@@ -290,7 +290,7 @@ class LinearProbingHashTable {
 
     //=============================================================================================
     public static void main(String[] args) {
-        LinearProbingHashTable hashTable = new LinearProbingHashTable();
+        LinearProbingHashTable1 hashTable = new LinearProbingHashTable1();
         System.out.println(hashTable);
 
         System.out.println(Arrays.toString(hashTable.polyCoeff));
