@@ -96,7 +96,7 @@ public class DoubleHashingHashTable2 {
         Object value;
         boolean isPresent;
 
-        public Pair(String key, Object value) {
+        Pair(String key, Object value) {
             this.key = key;
             this.value = value;
             this.isPresent = false;

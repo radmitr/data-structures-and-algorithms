@@ -99,11 +99,11 @@ public class DoubleHashingHashTable1 {
         Object value;
         boolean isPresent;
 
-        public Pair() {
+        Pair() {
             isPresent = false;
         }
 
-        public Pair(String key, Object value) {
+        Pair(String key, Object value) {
             this.key = key;
             this.value = value;
             this.isPresent = false;
