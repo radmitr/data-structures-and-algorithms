@@ -223,6 +223,10 @@ public class ListsHashTable {
         hashTable = newHashTable;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("{");
@@ -270,5 +274,8 @@ public class ListsHashTable {
         hashTable.put("twelve", 12);
         hashTable.put("zero", 0);
         System.out.println(hashTable);
+
+        // 5 - getSize()
+        System.out.println(hashTable.getSize());
     }
 }
