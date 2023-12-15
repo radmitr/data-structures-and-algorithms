@@ -113,7 +113,7 @@ public class ArrayBasedList {
         if (size >= capacity) {
             boolean resizeResult = upResize();
             if (!resizeResult) {
-                throw new RuntimeException("Can not add an element");
+                throw new RuntimeException("Cannot add an element");
             }
         }
         dataArray[size] = value;
@@ -127,7 +127,7 @@ public class ArrayBasedList {
         if (size >= capacity) {
             boolean resizeResult = upResize();
             if (!resizeResult) {
-                throw new RuntimeException("Can not add an element");
+                throw new RuntimeException("Cannot add an element");
             }
         }
         System.arraycopy(dataArray, index, dataArray, index + 1, size - index);

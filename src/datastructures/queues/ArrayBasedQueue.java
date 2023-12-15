@@ -94,7 +94,7 @@ public class ArrayBasedQueue {
 
     private void upResize() {
         if (data.length >= Integer.MAX_VALUE - 10) {
-            throw new IllegalArgumentException("Can not increase the size");
+            throw new IllegalArgumentException("Cannot increase the size");
         }
         Object[] newArray = new Object[Math.min(Integer.MAX_VALUE - 10, (int) (data.length * 4L / 3L + 1L))];
         int addIndex = 0;
