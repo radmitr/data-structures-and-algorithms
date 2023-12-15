@@ -67,7 +67,7 @@ import java.util.Random;
  * следующим образом.
  *
  *             k−1
- *   h(key) = (∑Ai⋅n⋅key^i)⋅mod p
+ *   h(key) = (∑Ai⋅n⋅key^i) mod p
  *             i=0
  *
  *   n(key ) - числовое представление ключа
@@ -79,14 +79,14 @@ import java.util.Random;
  * Выбираем значение p = 2^4 = 16
  *
  * Генерируем 5 случайных чисел в диапазоне от 0..15:
- * -------------------------------
- * | i  | 0  | 1  | 2  | 3  | 4  |
- * |-----------------------------|
- * | Ai | 7  | 2  | 13 | 5  | 11 |
- * -------------------------------
+ * -------------------------------------
+ * |  i  |  0  |  1  |  2  |  3  |  4  |
+ * |-----------------------------------|
+ * |  Ai |  7  |  2  |  13 |  5  |  11 |
+ * -------------------------------------
  *
  * Полученная хеш-функция равна:
- *   h(key) = (7 + 2⋅n(key) + 13⋅n(key)^2 + 5⋅n(key)^3 + 11⋅n(key)^4)⋅mod 16
+ *   h(key) = (7 + 2⋅n(key) + 13⋅n(key)^2 + 5⋅n(key)^3 + 11⋅n(key)^4) mod 16
  * ------------------------------------------------------------------------------------------------
  * Добавление пары (ключа нет в хеш-таблице)
  *
@@ -171,20 +171,20 @@ class LinearProbingHashTable {
     }
 
     private class Pair {
-        public String key;
-        public Object value;
+        String key;
+        Object value;
 
-        public Pair(String key, Object value) {
+        Pair(String key, Object value) {
             this.key = key;
             this.value = value;
         }
     }
 
     private void calculatePolyCoeff() {
-//        Random random = new Random();
-        Random random = new Random(0); // для теста seed = 0
+//        Random rnd = new Random();
+        Random rnd = new Random(0); // для теста seed = 0
         for (int i = 0; i < polyCoeff.length; i++) {
-            polyCoeff[i] = random.nextInt(capacity);
+            polyCoeff[i] = rnd.nextInt(capacity);
         }
     }
 
@@ -221,12 +221,13 @@ class LinearProbingHashTable {
     private void upResize() {
         int newCapacity = capacity * 2;
         if (newCapacity < 0) {
-            throw new RuntimeException("Can not increase the capacity");
+            throw new RuntimeException("Cannot increase the capacity");
         }
         Pair[] oldPairArray = pairArray;
         pairArray = new Pair[newCapacity];
         capacity = newCapacity;
         calculatePolyCoeff();
+        size = 0; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         for (Pair pair : oldPairArray) {
             if (pair != null) {
                 addPair(pair.key, pair.value);
