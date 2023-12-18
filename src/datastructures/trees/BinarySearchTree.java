@@ -84,15 +84,15 @@ public class BinarySearchTree {
             this.data = data;
         }
 
-//        @Override
-//        public String toString() {
-//            return "Node[key=" + key + ", data=" + data + "]";
-//        }
-
         @Override
         public String toString() {
-            return String.valueOf(key);
+            return "Node[key=" + key + ", data=" + data + "]";
         }
+
+//        @Override
+//        public String toString() {
+//            return String.valueOf(key);
+//        }
     }
 
     public void addNode(int key, Object data) {
