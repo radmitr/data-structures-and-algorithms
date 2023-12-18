@@ -117,7 +117,7 @@ import datastructures.lists.DoublyLinkedList;
  * <a href="https://youtu.be/KPRQuf39ZzQ">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class ListsHashTable {
+public class ListMethodHashTable {
 
     public static final int INITIAL_CAPACITY = 16;
     public static final double INITIAL_LOAD_FACTOR = 0.75;
@@ -127,11 +127,11 @@ public class ListsHashTable {
     private int size;
     private DoublyLinkedList[] hashTable;
 
-    public ListsHashTable() {
+    public ListMethodHashTable() {
         this(INITIAL_LOAD_FACTOR);
     }
 
-    public ListsHashTable(double loadFactor) {
+    public ListMethodHashTable(double loadFactor) {
         capacity = INITIAL_CAPACITY;
         this.loadFactor = loadFactor;
         hashTable = new DoublyLinkedList[capacity];
@@ -244,7 +244,7 @@ public class ListsHashTable {
 
     //=============================================================================================
     public static void main(String[] args) {
-        ListsHashTable hashTable = new ListsHashTable();
+        ListMethodHashTable hashTable = new ListMethodHashTable();
         System.out.println(hashTable);
 
         // 1 - put()
