@@ -9,12 +9,13 @@ import java.util.List;
  * ------------------------------------------------------------------------------------------------
  * Бинарное дерево поиска (binary search tree, BST) — частный случай упорядоченного дерева. Его
  * особенностями являются следующие:
- * 1) Узел имеет не более двух дочерних узлов (отсюда название бинарное)
- * 2) Оба поддерева (левое и правое) также являются бинарными деревьями поиска
- * 3) У всех узлов левого поддерева произвольного узла значения ключей меньше, чем значение
- *    ключа самого узла
- * 4) У всех узлов правого поддерева произвольного узла значения ключей больше, чем значение
- *    ключа самого узла
+ *   1) Узел имеет не более двух дочерних узлов (отсюда название бинарное)
+ *   2) Оба поддерева (левое и правое) также являются бинарными деревьями поиска
+ *   3) У всех узлов левого поддерева произвольного узла значения ключей меньше, чем значение
+ *      ключа самого узла
+ *   4) У всех узлов правого поддерева произвольного узла значения ключей больше, чем значение
+ *      ключа самого узла
+ *
  * Из определения бинарного дерева следует, что данные в каждом узле должны обладать
  * ключами, на которых определена операция сравнения.
  * ------------------------------------------------------------------------------------------------
@@ -53,16 +54,16 @@ import java.util.List;
  * Удаление узла
  *
  * При удалении узла следует рассматривать несколько случаев:
- * 1) У удаляемого узла нет дочерних узлов. В таком случае просто удаляем узел (не забывая
- *    удалить ребро у родительского).
- * 2) У удаляемого узла только один дочерний узел. Заменяем удаляемый узел на дочерний.
- * 3) У удаляемого узла два дочерних узла. В правом поддереве удаляемого узла ищем узел с
- *    минимальным значением ключа. Заменяем данные удаляемого ключа на данные найденного.
- *    Найденный узел удаляем.
+ *   1) У удаляемого узла нет дочерних узлов. В таком случае просто удаляем узел (не забывая
+ *      удалить ребро у родительского).
+ *   2) У удаляемого узла только один дочерний узел. Заменяем удаляемый узел на дочерний.
+ *   3) У удаляемого узла два дочерних узла. В правом поддереве удаляемого узла ищем узел с
+ *      минимальным значением ключа. Заменяем данные удаляемого ключа на данные найденного.
+ * Найденный узел удаляем.
  * ------------------------------------------------------------------------------------------------
  * Представление узла
  *
- * Наиболее простым способом представление узла является использование структуры где
+ * Наиболее простым способом представление узла является использование структуры, где
  * хранится данные, ключ и ссылку (или указатель) на левый и правый узел.
  * ------------------------------------------------------------------------------------------------
  * <a href="https://youtu.be/zznBMBouTKY">Ссылка на видео</a>
@@ -83,15 +84,15 @@ public class BinaryTree {
             this.data = data;
         }
 
-        @Override
-        public String toString() {
-            return "Node [key=" + key + ", data=" + data + "]";
-        }
-
 //        @Override
 //        public String toString() {
-//            return String.valueOf(key);
+//            return "Node[key=" + key + ", data=" + data + "]";
 //        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(key);
+        }
     }
 
     public void addNode(int key, Object data) {
@@ -137,12 +138,12 @@ public class BinaryTree {
             return null;
         }
         if (key == node.key) {
-            // node has no child node
+            // 1) node has no child node
             if (node.leftNode == null && node.rightNode == null) {
                 return null;
             }
 
-            // node has exactly one child
+            // 2) node has exactly one child
             if (node.leftNode == null) {
                 return node.rightNode;
             }
@@ -150,7 +151,7 @@ public class BinaryTree {
                 return node.leftNode;
             }
 
-            // node has two child node
+            // 3) node has two child node
             if (node.rightNode != null && node.leftNode != null) {
                 Node smallestNode = findSmallestValue(node.rightNode);
                 node.key = smallestNode.key;
@@ -161,11 +162,10 @@ public class BinaryTree {
         }
         if (key < node.key) {
             node.leftNode = deleteNodeRecursive(node.leftNode, key);
-            return node;
         } else {
             node.rightNode = deleteNodeRecursive(node.rightNode, key);
-            return node;
         }
+        return node;
     }
 
     private Node findSmallestValue(Node node) {
@@ -185,7 +185,7 @@ public class BinaryTree {
 
     public String toString() {
         if (root == null) {
-            return "";
+            return "null";
         }
         StringBuilder sb = new StringBuilder();
         List<Node> nodes = new ArrayList<>();
@@ -210,13 +210,18 @@ public class BinaryTree {
             nodes.addAll(nodesNextLevel);
             nodesNextLevel.clear();
         }
+        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 
-    //==========================================================================
+    //=============================================================================================
     public static void main(String[] args) {
         BinaryTree biTree = new BinaryTree();
+        System.out.println(biTree);
+        System.out.println("size = " + biTree.size());
+        System.out.println();
 
+        // 1 - addNode()
         biTree.addNode(6, "Pear");
         biTree.addNode(4, "Apple");
         biTree.addNode(0, "Plum");
@@ -225,15 +230,56 @@ public class BinaryTree {
         biTree.addNode(7, "Cherry");
         biTree.addNode(12, "Apricot");
 
-        System.out.println(biTree.findByKey(12));
-        System.out.println();
-
+        // 2 - size()
         System.out.println(biTree);
-        System.out.println(biTree.size());
+        System.out.println("size = " + biTree.size());
         System.out.println();
 
+        // 3 - findByKey()
+        System.out.println("findByKey(12) = " + biTree.findByKey(12));
+        System.out.println();
+
+        // 4 - deleteNode()
+        System.out.println("delete: 4");
         biTree.deleteNode(4);
         System.out.println(biTree);
-        System.out.println(biTree.size());
+        System.out.println("size = " + biTree.size());
+        System.out.println();
+
+        System.out.println("delete: 0");
+        biTree.deleteNode(0);
+        System.out.println(biTree);
+        System.out.println("size = " + biTree.size());
+        System.out.println();
+
+        System.out.println("delete: 5");
+        biTree.deleteNode(5);
+        System.out.println(biTree);
+        System.out.println("size = " + biTree.size());
+        System.out.println();
+
+        System.out.println("delete: 9");
+        biTree.deleteNode(9);
+        System.out.println(biTree);
+        System.out.println("size = " + biTree.size());
+        System.out.println();
+
+        System.out.println("delete: 12");
+        biTree.deleteNode(12);
+        System.out.println(biTree);
+        System.out.println("size = " + biTree.size());
+        System.out.println();
+
+        System.out.println("delete: 7");
+        biTree.deleteNode(7);
+        System.out.println(biTree);
+        System.out.println("size = " + biTree.size());
+        System.out.println();
+
+        System.out.println("delete root: 6");
+        biTree.deleteNode(6);
+        System.out.println(biTree);
+        System.out.println("size = " + biTree.size());
+        System.out.println();
     }
 }
