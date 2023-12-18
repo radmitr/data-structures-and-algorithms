@@ -69,7 +69,7 @@ import java.util.List;
  * <a href="https://youtu.be/zznBMBouTKY">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class BinaryTree {
+public class BinarySearchTree {
 
     private Node root;
 
@@ -216,7 +216,7 @@ public class BinaryTree {
 
     //=============================================================================================
     public static void main(String[] args) {
-        BinaryTree biTree = new BinaryTree();
+        BinarySearchTree biTree = new BinarySearchTree();
         System.out.println(biTree);
         System.out.println("size = " + biTree.size());
         System.out.println();
