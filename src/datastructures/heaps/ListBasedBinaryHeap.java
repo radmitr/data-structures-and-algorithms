@@ -117,11 +117,11 @@ import java.util.List;
  * <a href="https://youtu.be/kWlF9FcyEUY">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-class BinaryHeap {
+class ListBasedBinaryHeap {
 
     private List<Node> nodes = new ArrayList<>();
 
-    public BinaryHeap() {
+    public ListBasedBinaryHeap() {
     }
 
     private class Node {
@@ -252,7 +252,7 @@ class BinaryHeap {
 
     //=============================================================================================
     public static void main(String[] args) {
-        BinaryHeap heap = new BinaryHeap();
+        ListBasedBinaryHeap heap = new ListBasedBinaryHeap();
         System.out.println(heap);
         System.out.println();
 
