@@ -119,25 +119,9 @@ import java.util.List;
  */
 class BinaryHeap {
 
-    public static void main(String[] args) {
-        BinaryHeap heap = new BinaryHeap();
-        heap.add(6, "Orange");
-        heap.add(7, "Apple");
-        heap.add(3, "Plum");
-        heap.add(4, "Lemon");
-        heap.add(5, "Pear");
-        heap.add(9, "Cherry");
-        heap.add(12, "Banana");
-        System.out.println(heap);
-        System.out.println();
+    private List<Node> nodes = new ArrayList<>();
 
-        while (true) {
-            Object data = heap.extract();
-            if (data == null) {
-                break;
-            }
-            System.out.println(data);
-        }
+    public BinaryHeap() {
     }
 
     private class Node {
@@ -151,14 +135,8 @@ class BinaryHeap {
 
         @Override
         public String toString() {
-            return "Node [key=" + key + ", data=" + data + "]";
+            return "Node[key=" + key + ", data=" + data + "]";
         }
-    }
-
-    private List<Node> nodes = new ArrayList<>();
-
-    public BinaryHeap() {
-        super();
     }
 
     public void add(int key, Object data) {
@@ -171,7 +149,7 @@ class BinaryHeap {
             return null;
         }
         if (nodes.size() == 1) {
-            return nodes.remove(nodes.size() - 1).data;
+            return nodes.remove(0).data;
         }
         Object result = nodes.get(0).data;
         nodes.set(0, nodes.remove(nodes.size() - 1));
@@ -184,8 +162,7 @@ class BinaryHeap {
             nodes.add(new Node(key, data));
             return null;
         }
-        Object result = null;
-        result = nodes.get(0);
+        Object result = nodes.get(0).data;
         nodes.set(0, new Node(key, data));
         siftDown(0);
         return result;
@@ -246,9 +223,9 @@ class BinaryHeap {
     private void heapRecovery(int i) {
         if (i > 0 && nodes.get(i).key > nodes.get((i - 1) / 2).key) {
             siftUp(i);
-            return;
+        } else {
+            siftDown(i);
         }
-        siftDown(i);
     }
 
     private int findIndexByKey(int key) {
@@ -262,10 +239,68 @@ class BinaryHeap {
 
     @Override
     public String toString() {
+        if (nodes.size() == 0) {
+            return "null";
+        }
         StringBuilder sb = new StringBuilder();
         for (Node node : nodes) {
             sb.append(node).append(System.lineSeparator());
         }
+        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
+    }
+
+    //=============================================================================================
+    public static void main(String[] args) {
+        BinaryHeap heap = new BinaryHeap();
+        System.out.println(heap);
+        System.out.println();
+
+        // 1 - add()
+        heap.add(6, "Orange");
+        heap.add(7, "Apple");
+        heap.add(3, "Plum");
+        heap.add(4, "Lemon");
+        heap.add(5, "Pear");
+        heap.add(9, "Cherry");
+        heap.add(12, "Banana");
+        System.out.println(heap);
+        System.out.println();
+
+        // 2 - extract()
+        while (true) {
+            Object data = heap.extract();
+            if (data == null) {
+                break;
+            }
+            System.out.println(data);
+        }
+        System.out.println(heap);
+        System.out.println();
+
+        // 3 - insertAndExtract()
+        heap.add(6, "Orange");
+        heap.add(7, "Apple");
+        heap.add(3, "Plum");
+        heap.add(4, "Lemon");
+        heap.add(5, "Pear");
+        heap.add(9, "Cherry");
+        heap.add(24, "Pineapple");
+        System.out.println(heap);
+        System.out.println();
+
+        System.out.println(heap.insertAndExtract(8, "Coconut"));
+        System.out.println(heap);
+        System.out.println();
+
+        // 4 - delete()
+        heap.delete(4);
+        System.out.println(heap);
+        System.out.println();
+
+        // 5 - changeKey()
+        heap.changeKey(8, 15);
+        System.out.println(heap);
+        System.out.println();
     }
 }
