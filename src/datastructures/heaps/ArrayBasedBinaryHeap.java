@@ -1,9 +1,6 @@
 package datastructures.heaps;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -120,7 +117,7 @@ import java.util.List;
  */
 public class ArrayBasedBinaryHeap {
 
-    public static final int INITIAL_LENGTH = 100;
+    public static final int INITIAL_LENGTH = 5;
 
     private Node[] nodes;
     private int insertIndex;
@@ -146,14 +143,63 @@ public class ArrayBasedBinaryHeap {
 
     public void add(int key, Object data) {
         if (insertIndex == nodes.length) {
-            resize();
+            boolean resizeResult = upResize();
+            if (!resizeResult) {
+                throw new RuntimeException("Cannot add an element");
+            }
         }
         nodes[insertIndex] = new Node(key, data);
+        siftUp(insertIndex);
         insertIndex++;
     }
 
-    private void resize() {
+    public Object extract() {
+        if (insertIndex == 0) {
+            return null;
+        }
+        if (insertIndex == 1) {
+            insertIndex--;
+            return nodes[insertIndex].data;
+        }
+        Object result = nodes[0].data;
+        insertIndex--;
+        nodes[0] = nodes[insertIndex];
+        nodes[insertIndex] = null;
+        siftDown(0);
+        return result;
+    }
 
+    public Object insertAndExtract(int key, Object data) {
+        if (insertIndex == 0) {
+            nodes[0] = new Node(key, data);
+            return null;
+        }
+        Object result = nodes[0].data;
+        nodes[0] = new Node(key, data);
+        siftDown(0);
+        return result;
+    }
+
+    public void delete(int key) {
+        int i = findIndexByKey(key);
+        if (i != -1) {
+            Node node = nodes[insertIndex - 1];
+            nodes[insertIndex - 1] = null;
+            insertIndex--;
+            if (insertIndex == 0) {
+                return;
+            }
+            nodes[i] = node;
+            heapRecovery(i);
+        }
+    }
+
+    public void changeKey(int oldKey, int newKey) {
+        int i = findIndexByKey(oldKey);
+        if (i != -1) {
+            nodes[i].key = newKey;
+            heapRecovery(i);
+        }
     }
 
     private void siftUp(int i) {
@@ -173,10 +219,10 @@ public class ArrayBasedBinaryHeap {
             int leftIndex = 2 * i + 1;
             int rightIndex = 2 * i + 2;
             int j = i;
-            if (leftIndex <= nodes.length - 1 && nodes[leftIndex].key > nodes[j].key) {
+            if (leftIndex < insertIndex && nodes[leftIndex].key > nodes[j].key) {
                 j = leftIndex;
             }
-            if (rightIndex <= nodes.length - 1 && nodes[rightIndex].key > nodes[j].key) {
+            if (rightIndex < insertIndex && nodes[rightIndex].key > nodes[j].key) {
                 j = rightIndex;
             }
             if (i != j) {
@@ -194,8 +240,98 @@ public class ArrayBasedBinaryHeap {
         a[j] = temp;
     }
 
+    private void heapRecovery(int i) {
+        if (i > 0 && nodes[i].key > nodes[(i - 1) / 2].key) {
+            siftUp(i);
+        } else {
+            siftDown(i);
+        }
+    }
+
+    private int findIndexByKey(int key) {
+        for (int i = 0; i < insertIndex; i++) {
+            if (nodes[i].key == key) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private boolean upResize() {
+        if (insertIndex >= Integer.MAX_VALUE - 1) {
+            return false;
+        }
+        long newLengthL = (nodes.length * 2L);
+        int newLength = (newLengthL < Integer.MAX_VALUE - 1) ? (int) newLengthL : Integer.MAX_VALUE - 1;
+        nodes = Arrays.copyOf(nodes, newLength);
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        if (insertIndex == 0) {
+            return "null";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < insertIndex; i++) {
+            sb.append(nodes[i]).append(System.lineSeparator());
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
+
     //=============================================================================================
     public static void main(String[] args) {
+        ArrayBasedBinaryHeap heap = new ArrayBasedBinaryHeap();
+        System.out.println(heap);
+        System.out.println();
 
+        // 1 - add()
+        heap.add(6, "Orange");
+        heap.add(7, "Apple");
+        heap.add(3, "Plum");
+        heap.add(4, "Lemon");
+        heap.add(5, "Pear");
+        heap.add(9, "Cherry");
+        heap.add(12, "Banana");
+        System.out.println(heap);
+        System.out.println();
+
+        // 2 - extract()
+        while (true) {
+            Object data = heap.extract();
+            if (data == null) {
+                break;
+            }
+            System.out.println(data);
+        }
+        System.out.println(heap);
+        System.out.println();
+
+        // 3 - insertAndExtract()
+        heap.add(6, "Orange");
+        heap.add(7, "Apple");
+        heap.add(3, "Plum");
+        heap.add(4, "Lemon");
+        heap.add(5, "Pear");
+        heap.add(9, "Cherry");
+        heap.add(24, "Pineapple");
+        System.out.println(heap);
+        System.out.println();
+
+        System.out.println(heap.insertAndExtract(8, "Coconut"));
+        System.out.println();
+        System.out.println(heap);
+        System.out.println();
+
+        // 4 - delete()
+        heap.delete(4);
+        System.out.println(heap);
+        System.out.println();
+
+        // 5 - changeKey()
+        heap.changeKey(8, 15);
+        System.out.println(heap);
+        System.out.println();
     }
 }
