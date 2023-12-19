@@ -117,13 +117,13 @@ import java.util.Arrays;
  */
 public class ArrayBasedBinaryHeap {
 
-    public static final int INITIAL_LENGTH = 5;
+    public static final int DEFAULT_LENGTH = 100;
 
     private Node[] nodes;
     private int insertIndex;
 
     public ArrayBasedBinaryHeap() {
-        nodes = new Node[INITIAL_LENGTH];
+        nodes = new Node[DEFAULT_LENGTH];
     }
 
     private class Node {

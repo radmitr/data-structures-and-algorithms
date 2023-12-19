@@ -157,10 +157,10 @@ import java.util.Random;
  */
 class LinearProbingHashTable1 {
 
-    public static final int INITIAL_CAPACITY = 16;
+    public static final int DEFAULT_CAPACITY = 16;
 
     private Pair[] pairArray;
-    private int capacity = INITIAL_CAPACITY;
+    private int capacity = DEFAULT_CAPACITY;
 //    private int[] polyCoeff = new int[5];
     public int[] polyCoeff = new int[5]; // для теста public
     private int size = 0;

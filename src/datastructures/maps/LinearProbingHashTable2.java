@@ -165,7 +165,7 @@ import java.util.Random;
 */
 class LinearProbingHashTable2 {
 
-    public static final int INITIAL_CAPACITY = 16;
+    public static final int DEFAULT_CAPACITY = 16;
 
     /**
      * Коэффициент сжатия индексов.
@@ -179,7 +179,7 @@ class LinearProbingHashTable2 {
     private static final double INDEX_COMPRESSION_RATIO = 0.05;
 
     private Pair[] pairArray;
-    private int capacity = INITIAL_CAPACITY;
+    private int capacity = DEFAULT_CAPACITY;
     private int[] polyCoeff = new int[5];
     private int size = 0;
 

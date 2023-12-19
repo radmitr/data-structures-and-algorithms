@@ -119,8 +119,8 @@ import datastructures.lists.DoublyLinkedList;
  */
 public class ListMethodHashTable {
 
-    public static final int INITIAL_CAPACITY = 16;
-    public static final double INITIAL_LOAD_FACTOR = 0.75;
+    public static final int DEFAULT_CAPACITY = 16;
+    public static final double DEFAULT_LOAD_FACTOR = 0.75;
 
     private int capacity;
     private double loadFactor;
@@ -128,11 +128,11 @@ public class ListMethodHashTable {
     private DoublyLinkedList[] hashTable;
 
     public ListMethodHashTable() {
-        this(INITIAL_LOAD_FACTOR);
+        this(DEFAULT_LOAD_FACTOR);
     }
 
     public ListMethodHashTable(double loadFactor) {
-        capacity = INITIAL_CAPACITY;
+        capacity = DEFAULT_CAPACITY;
         this.loadFactor = loadFactor;
         hashTable = new DoublyLinkedList[capacity];
         for (int i = 0; i < capacity; i++) {

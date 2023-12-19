@@ -39,7 +39,7 @@ package datastructures.graphs;
  */
 public class GraphAdjacencyMatrixDFS {
 
-    public static final int INITIAL_MATRIX_SIZE = 100;
+    public static final int DEFAULT_MATRIX_SIZE = 100;
 
     private Node[] nodes;
     public int[][] adjacencyMatrix;
@@ -47,7 +47,7 @@ public class GraphAdjacencyMatrixDFS {
     private boolean isMatrixFull;
 
     public GraphAdjacencyMatrixDFS() {
-        matrixSize = INITIAL_MATRIX_SIZE;
+        matrixSize = DEFAULT_MATRIX_SIZE;
         nodes = new Node[matrixSize];
         adjacencyMatrix = new int[matrixSize][matrixSize];
     }

@@ -31,7 +31,7 @@ import java.util.Deque;
  */
 public class GraphAdjacencyMatrixBFS {
 
-    public static final int INITIAL_MATRIX_SIZE = 100;
+    public static final int DEFAULT_MATRIX_SIZE = 100;
 
     private Node[] nodes;
     public int[][] adjacencyMatrix;
@@ -39,7 +39,7 @@ public class GraphAdjacencyMatrixBFS {
     private boolean isMatrixFull;
 
     public GraphAdjacencyMatrixBFS() {
-        matrixSize = INITIAL_MATRIX_SIZE;
+        matrixSize = DEFAULT_MATRIX_SIZE;
         nodes = new Node[matrixSize];
         adjacencyMatrix = new int[matrixSize][matrixSize];
     }
