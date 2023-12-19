@@ -1,4 +1,4 @@
-package algorithms.computations.merging_sorted_sequences;
+package algorithms.computations.mergingsortedsequences;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package algorithms.computations.hash_functions;
+package algorithms.computations.hash;
 
 /**
  * ------------------------------------------------------------------------------------------------
