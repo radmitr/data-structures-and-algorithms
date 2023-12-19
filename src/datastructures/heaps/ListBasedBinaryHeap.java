@@ -205,10 +205,10 @@ class ListBasedBinaryHeap {
             int leftIndex = 2 * i + 1;
             int rightIndex = 2 * i + 2;
             int j = i;
-            if (leftIndex <= nodes.size() - 1 && nodes.get(leftIndex).key > nodes.get(j).key) {
+            if (leftIndex < nodes.size() && nodes.get(leftIndex).key > nodes.get(j).key) {
                 j = leftIndex;
             }
-            if (rightIndex <= nodes.size() - 1 && nodes.get(rightIndex).key > nodes.get(j).key) {
+            if (rightIndex < nodes.size() && nodes.get(rightIndex).key > nodes.get(j).key) {
                 j = rightIndex;
             }
             if (i != j) {
@@ -290,6 +290,7 @@ class ListBasedBinaryHeap {
         System.out.println();
 
         System.out.println(heap.insertAndExtract(8, "Coconut"));
+        System.out.println();
         System.out.println(heap);
         System.out.println();
 
