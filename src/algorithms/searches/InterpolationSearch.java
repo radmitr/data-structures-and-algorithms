@@ -1,4 +1,4 @@
-package algorithms.searches.interpolation_search;
+package algorithms.searches;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;

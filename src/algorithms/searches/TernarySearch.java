@@ -1,4 +1,4 @@
-package algorithms.searches.ternary_search;
+package algorithms.searches;
 
 import java.util.Arrays;
 

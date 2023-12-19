@@ -1,4 +1,4 @@
-package algorithms.searches.exponential_search;
+package algorithms.searches;
 
 import java.util.Arrays;
 

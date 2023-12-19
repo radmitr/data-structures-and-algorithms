@@ -1,4 +1,4 @@
-package algorithms.searches.fibonacci_search;
+package algorithms.searches;
 
 /**
  * ------------------------------------------------------------------------------------------------

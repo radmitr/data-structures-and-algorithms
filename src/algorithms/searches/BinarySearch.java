@@ -1,4 +1,4 @@
-package algorithms.searches.binary_search;
+package algorithms.searches;
 
 import java.util.Arrays;
 
