@@ -63,7 +63,7 @@ import java.util.Arrays;
  * <a href="https://youtu.be/bp5_gvIdLEU">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class PermutationsByNarayana {
+public class PermutationsNarayana {
 
     public static void main(String[] args) {
         generatePermutations(4);
