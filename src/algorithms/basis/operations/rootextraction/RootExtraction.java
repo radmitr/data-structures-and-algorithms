@@ -1,4 +1,4 @@
-package algorithms.basis.arithmetic_operations.root_extraction;
+package algorithms.basis.operations.rootextraction;
 
 /**
  * ------------------------------------------------------------------------------------------------

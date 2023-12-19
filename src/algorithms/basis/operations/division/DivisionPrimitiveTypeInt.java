@@ -1,4 +1,4 @@
-package algorithms.basis.arithmetic_operations.division;
+package algorithms.basis.operations.division;
 
 /**
  * ------------------------------------------------------------------------------------------------

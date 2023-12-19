@@ -1,4 +1,6 @@
-package algorithms.basis.arithmetic_operations.exponentiation;
+package algorithms.basis.operations.exponentiation;
+
+import java.math.BigInteger;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -21,12 +23,11 @@ package algorithms.basis.arithmetic_operations.exponentiation;
  * <a href="https://youtu.be/sT-3BCNvUrw">Ссылка на видео</>
  * ------------------------------------------------------------------------------------------------
  */
-public class ExponentiationPrimitiveType {
+public class ExponentiationReferenceType {
 
     public static void main(String[] args) {
-        int a = 3;
-        int b = 2;
-        double c = Math.pow(a, b);
-        System.out.println(c);
+        BigInteger a = new BigInteger("3");
+        BigInteger b = new BigInteger("2");
+        BigInteger c = a.pow(b.intValue());
     }
 }

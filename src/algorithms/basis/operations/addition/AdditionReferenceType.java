@@ -1,4 +1,6 @@
-package algorithms.basis.arithmetic_operations.addition_subtraction;
+package algorithms.basis.operations.addition;
+
+import java.math.BigInteger;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -28,24 +30,21 @@ package algorithms.basis.arithmetic_operations.addition_subtraction;
  *   Неассоциативность: ( a − b ) − c ≠ a − ( b − c )
  *   Вычитание 0 (нулевого элемента) даёт число равное исходному: x − 0 = x
  * ------------------------------------------------------------------------------------------------
- * Реализация на Java
+ * Особенности реализации на Java
  *
- * Для примитивных типов используются операторы + и - . Для ссылочных типов
- * используются соответствующие вызовы методов.
+ * Для целочисленных примитивных типов существует переполнение. Так, как каждый
+ * примитивный тип способен описать число из ограниченного диапазона, то выход за его
+ * пределы приводит к переходу в другой конец диапазона.
  * ------------------------------------------------------------------------------------------------
  * <a href="https://youtu.be/sT-3BCNvUrw">Ссылка на видео</>
  * ------------------------------------------------------------------------------------------------
  */
-public class AdditionPrimitiveType {
+public class AdditionReferenceType {
 
     public static void main(String[] args) {
-        int a = 2;
-        int b = 3;
-        int c = a + b;
-        double a1 = 2.5;
-        double b1 = 3.5;
-        double c1 = b1 - a1;
+        BigInteger a = new BigInteger("2000");
+        BigInteger b = new BigInteger("20");
+        BigInteger c = a.add(b);
         System.out.println(c);
-        System.out.println(c1);
     }
 }

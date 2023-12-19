@@ -1,6 +1,7 @@
-package algorithms.basis.arithmetic_operations.division;
+package algorithms.basis.operations.division;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -57,14 +58,11 @@ import java.math.BigInteger;
  * <a href="https://youtu.be/sT-3BCNvUrw">Ссылка на видео</>
  * ------------------------------------------------------------------------------------------------
  */
-public class DivisionReferenceTypeBigInteger {
+public class DivisionReferenceTypeBigDecimal {
 
     public static void main(String[] args) {
-        BigInteger a = new BigInteger("5");
-        BigInteger b = new BigInteger("3");
-        BigInteger r = a.divide(b);
-        BigInteger q = a.remainder(b);
-        System.out.println(r);
-        System.out.println(q);
+        BigDecimal a = new BigDecimal("5.2").setScale(25);
+        BigDecimal b = new BigDecimal("2.1").setScale(25);
+        BigDecimal c = a.divide(b, RoundingMode.CEILING);
     }
 }

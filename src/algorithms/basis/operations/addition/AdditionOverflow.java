@@ -1,4 +1,4 @@
-package algorithms.basis.arithmetic_operations.addition_subtraction;
+package algorithms.basis.operations.addition;
 
 /**
  * ------------------------------------------------------------------------------------------------

@@ -1,6 +1,4 @@
-package algorithms.basis.arithmetic_operations.multiplication;
-
-import java.math.BigInteger;
+package algorithms.basis.operations.multiplication;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -41,12 +39,16 @@ import java.math.BigInteger;
  * <a href="https://youtu.be/sT-3BCNvUrw">Ссылка на видео</>
  * ------------------------------------------------------------------------------------------------
  */
-public class MultiplicationReferenceType {
+public class MultiplicationPrimitiveType {
 
     public static void main(String[] args) {
-        BigInteger a = new BigInteger("2");
-        BigInteger b = new BigInteger("3");
-        BigInteger c = a.multiply(b);
+        int a = 2;
+        int b = 3;
+        int c = a * b;
+        double a1 = 2.5;
+        double b1 = 3.5;
+        double c1 = b1 * a1;
         System.out.println(c);
+        System.out.println(c1);
     }
 }
