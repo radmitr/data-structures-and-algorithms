@@ -84,7 +84,7 @@ public class DoublyLinkedListBasedQueue {
 
         @Override
         public String toString() {
-            return "Node [data=" + data + "]";
+            return "Node[data=" + data + "]";
         }
     }
 
