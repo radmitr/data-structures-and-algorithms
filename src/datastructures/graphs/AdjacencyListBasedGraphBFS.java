@@ -33,7 +33,7 @@ import java.util.Map;
  * <a href="https://youtu.be/s_oXy8TUPg0">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class GraphAdjacencyListBFS {
+public class AdjacencyListBasedGraphBFS {
 
     private final Map<String, Node> nodes = new HashMap<>();
 
@@ -193,7 +193,7 @@ public class GraphAdjacencyListBFS {
 
     //==================================================================================
     public static void main(String[] args) {
-        GraphAdjacencyListBFS graph = new GraphAdjacencyListBFS();
+        AdjacencyListBasedGraphBFS graph = new AdjacencyListBasedGraphBFS();
 
         graph.addNode("a");
         graph.addNode("b");

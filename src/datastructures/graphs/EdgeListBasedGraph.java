@@ -49,7 +49,7 @@ import java.util.*;
  * <a href="https://youtu.be/Yvp0-Og2T28">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class GraphEdgeList {
+public class EdgeListBasedGraph {
 
     private List<Node> nodeList = new ArrayList<>();
     private List<Edge> edgeList = new ArrayList<>();
@@ -239,7 +239,7 @@ public class GraphEdgeList {
 
     //==================================================================================
     public static void main(String[] args) throws IllegalAccessException {
-        GraphEdgeList graph1 = new GraphEdgeList();
+        EdgeListBasedGraph graph1 = new EdgeListBasedGraph();
 
         // 1 - add nodes
         graph1.addNode("a");

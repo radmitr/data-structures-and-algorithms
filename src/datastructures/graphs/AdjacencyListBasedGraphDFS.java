@@ -42,7 +42,7 @@ import java.util.Map;
  * <a href="https://youtu.be/NY5Fs15ad6Q">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class GraphAdjacencyListDFS {
+public class AdjacencyListBasedGraphDFS {
 
     private final Map<String, Node> nodes = new HashMap<>();
 
@@ -204,7 +204,7 @@ public class GraphAdjacencyListDFS {
 
     //===========================================================================
     public static void main(String[] args) {
-        GraphAdjacencyListDFS graph = new GraphAdjacencyListDFS();
+        AdjacencyListBasedGraphDFS graph = new AdjacencyListBasedGraphDFS();
 
         graph.addNode("a");
         graph.addNode("b");

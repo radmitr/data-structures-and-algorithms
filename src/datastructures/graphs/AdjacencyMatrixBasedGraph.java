@@ -57,7 +57,7 @@ package datastructures.graphs;
  * <a href="https://youtu.be/Yvp0-Og2T28">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class GraphAdjacencyMatrix {
+public class AdjacencyMatrixBasedGraph {
 
     public static final int DEFAULT_MATRIX_SIZE = 100;
 
@@ -66,7 +66,7 @@ public class GraphAdjacencyMatrix {
     private int matrixSize;
     private boolean isMatrixFull;
 
-    public GraphAdjacencyMatrix() {
+    public AdjacencyMatrixBasedGraph() {
         matrixSize = DEFAULT_MATRIX_SIZE;
         nodes = new Node[matrixSize];
         adjacencyMatrix = new int[matrixSize][matrixSize];
@@ -222,7 +222,7 @@ public class GraphAdjacencyMatrix {
 
     //==================================================================================
     public static void main(String[] args) throws IllegalAccessException {
-        GraphAdjacencyMatrix graph = new GraphAdjacencyMatrix();
+        AdjacencyMatrixBasedGraph graph = new AdjacencyMatrixBasedGraph();
 
         // 1 - add nodes
         graph.addNode("a", 1);

@@ -65,7 +65,7 @@ import java.util.*;
  * <a href="https://youtu.be/Yvp0-Og2T28">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
  */
-public class GraphAdjacencyList {
+public class AdjacencyListBasedGraph {
 
     private final Map<String, Node> nodes = new HashMap<>();
 
@@ -178,7 +178,7 @@ public class GraphAdjacencyList {
 
     //==================================================================================
     public static void main(String[] args) {
-        GraphAdjacencyList graph = new GraphAdjacencyList();
+        AdjacencyListBasedGraph graph = new AdjacencyListBasedGraph();
 
         // 1 - add nodes
         graph.addNode("a");
