@@ -70,7 +70,7 @@ public class Combinations {
             int j = 0;
             while (comb[j] + 1 == comb[j + 1]) {
                 comb[j] = j;
-                j = j + 1;
+                j++;
             }
             if (j < k) {
                 comb[j]++;
