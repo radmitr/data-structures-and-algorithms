@@ -42,10 +42,10 @@ public class PermutationsCyclicShifts1 {
 
     public static void main(String[] args) {
         int[] array = { 0, 1, 2, 3 };
-        generatePermutations(array);
+        printAllPermutations(array);
     }
 
-    public static void generatePermutations(int[] array) {
+    public static void printAllPermutations(int[] array) {
         int k = array.length - 1;
         int n = k;
         System.out.println(Arrays.toString(array));

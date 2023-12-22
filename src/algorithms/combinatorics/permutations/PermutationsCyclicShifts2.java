@@ -44,15 +44,15 @@ public class PermutationsCyclicShifts2 {
     public static void main(String[] args) {
         // 1 - array
         int[] array = { 1, 2, 3 };
-        generatePermutations(array);
+        printAllPermutations(array);
         System.out.println();
 
         // 2 - array2
         int[] array2 = { 1, 2, 3, 4 };
-        generatePermutations(array2);
+        printAllPermutations(array2);
     }
 
-    public static void generatePermutations(int[] array) {
+    public static void printAllPermutations(int[] array) {
         int k = array.length - 1;
         int n = k;
         System.out.println(Arrays.toString(array));
