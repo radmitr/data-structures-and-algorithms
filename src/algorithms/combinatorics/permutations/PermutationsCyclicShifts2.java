@@ -42,9 +42,9 @@ public class PermutationsCyclicShifts2 {
 
     // Числа от 1 до n
     public static void main(String[] args) {
-        // 1 - array
-        int[] array = { 1, 2, 3 };
-        printAllPermutations(array);
+        // 1 - array1
+        int[] array1 = { 1, 2, 3 };
+        printAllPermutations(array1);
         System.out.println();
 
         // 2 - array2

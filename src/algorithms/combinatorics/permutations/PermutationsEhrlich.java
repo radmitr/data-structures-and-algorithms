@@ -3,7 +3,7 @@ package algorithms.combinatorics.permutations;
 import java.util.Arrays;
 /**
  * ------------------------------------------------------------------------------------------------
- *  Генерация перестановок. Метод обмена Эрлиха.
+ * Генерация перестановок. Метод обмена Эрлиха.
  * ------------------------------------------------------------------------------------------------
  * Сведение об алгоритме
  *
@@ -34,8 +34,14 @@ import java.util.Arrays;
 public class PermutationsEhrlich {
 
     public static void main(String[] args) {
-        String[] array = { "1", "2", "3", "4" };
-        printAllPermutations(array);
+        // 1 - array1
+        String[] array1 = { "a", "b", "c" };
+        printAllPermutations(array1);
+        System.out.println();
+
+        // 2 - array2
+        String[] array2 = { "1", "2", "3", "4" };
+        printAllPermutations(array2);
     }
 
     public static <T> void printAllPermutations(T[] array) {
