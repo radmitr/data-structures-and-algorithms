@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * ------------------------------------------------------------------------------------------------
- * Пирамидальная сортировка
+ * Пирамидальная сортировка (сортировка кучей)
  * ------------------------------------------------------------------------------------------------
  * Сложность алгоритма
  *
@@ -44,6 +44,14 @@ public class HeapSortModified {
 
         heapSort(array);
         System.out.println(Arrays.toString(array));
+        System.out.println();
+
+        // 2 - array2
+        int[] array2 = { 5, 0, -2, 7, 3, 10, 100, 57, 23, 45, 24, 33, 99, 57, 63, 72, 80, -11 };
+        System.out.println(Arrays.toString(array2));
+
+        heapSort(array2);
+        System.out.println(Arrays.toString(array2));
     }
 
     public static void heapSort(int[] array) {
@@ -60,7 +68,7 @@ public class HeapSortModified {
         }
     }
 
-    public static void siftDown(int[] array, int i, int lasIndex) {
+    private static void siftDown(int[] array, int i, int lasIndex) {
         while (true) {
             int leftIndex = 2 * i + 1;
             int rightIndex = 2 * i + 2;
@@ -80,7 +88,7 @@ public class HeapSortModified {
         }
     }
 
-    public static void swap(int[] array, int i, int j) {
+    private static void swap(int[] array, int i, int j) {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
