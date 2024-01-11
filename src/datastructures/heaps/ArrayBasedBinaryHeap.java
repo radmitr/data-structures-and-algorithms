@@ -190,7 +190,7 @@ public class ArrayBasedBinaryHeap {
                 return;
             }
             nodes[i] = node;
-            heapRecovery(i);
+            recoverHeap(i);
         }
     }
 
@@ -198,7 +198,7 @@ public class ArrayBasedBinaryHeap {
         int i = findIndexByKey(oldKey);
         if (i != -1) {
             nodes[i].key = newKey;
-            heapRecovery(i);
+            recoverHeap(i);
         }
     }
 
@@ -240,7 +240,7 @@ public class ArrayBasedBinaryHeap {
         a[j] = temp;
     }
 
-    private void heapRecovery(int i) {
+    private void recoverHeap(int i) {
         if (i > 0 && nodes[i].key > nodes[(i - 1) / 2].key) {
             siftUp(i);
         } else {

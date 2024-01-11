@@ -176,7 +176,7 @@ class ListBasedBinaryHeap {
                 return;
             }
             nodes.set(i, node);
-            heapRecovery(i);
+            recoverHeap(i);
         }
     }
 
@@ -184,7 +184,7 @@ class ListBasedBinaryHeap {
         int i = findIndexByKey(oldKey);
         if (i != -1) {
             nodes.get(i).key = newKey;
-            heapRecovery(i);
+            recoverHeap(i);
         }
     }
 
@@ -220,7 +220,7 @@ class ListBasedBinaryHeap {
         }
     }
 
-    private void heapRecovery(int i) {
+    private void recoverHeap(int i) {
         if (i > 0 && nodes.get(i).key > nodes.get((i - 1) / 2).key) {
             siftUp(i);
         } else {
