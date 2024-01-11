@@ -47,7 +47,7 @@ public class HeapSortModified {
         System.out.println();
 
         // 2 - array2
-        int[] array2 = { 5, 0, -2, 7, 3, 10, 100, 57, 23, 45, 24, 33, 99, 57, 63, 72, 80, -11 };
+        int[] array2 = { 5, 0, -2, 7, 3, 10, 100, 57, 23, 45, 24, 3, 3, 4,  33, 99, 57, 63, 72, 80, -11 };
         System.out.println(Arrays.toString(array2));
 
         heapSort(array2);
@@ -55,12 +55,13 @@ public class HeapSortModified {
     }
 
     public static void heapSort(int[] array) {
-        int n = array.length / 2;
-        int lastIndex = array.length;
-        for (int i = n; i >= 0; i--) {
-            siftDown(array, i, lastIndex);
+        // heapify
+        int halfSize = array.length / 2;
+        for (int i = halfSize; i >= 0; i--) {
+            siftDown(array, i, array.length);
         }
-        lastIndex--;
+        // sort
+        int lastIndex = array.length - 1;
         while (lastIndex > 0) {
             swap(array, 0, lastIndex);
             siftDown(array, 0, lastIndex);
@@ -68,15 +69,15 @@ public class HeapSortModified {
         }
     }
 
-    private static void siftDown(int[] array, int i, int lasIndex) {
+    private static void siftDown(int[] array, int i, int size) {
         while (true) {
             int leftIndex = 2 * i + 1;
             int rightIndex = 2 * i + 2;
             int j = i;
-            if (leftIndex < lasIndex && array[leftIndex] > array[j]) {
+            if (leftIndex < size && array[leftIndex] > array[j]) {
                 j = leftIndex;
             }
-            if (rightIndex < lasIndex && array[rightIndex] > array[j]) {
+            if (rightIndex < size && array[rightIndex] > array[j]) {
                 j = rightIndex;
             }
             if (i != j) {
