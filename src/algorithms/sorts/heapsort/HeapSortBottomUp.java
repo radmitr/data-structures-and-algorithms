@@ -34,9 +34,9 @@ import java.util.Arrays;
  *
  * Модифицированное просеивание вниз выглядит следующим образом. Находим максимальный лист
  * кучи (узел на последнем слое у которого нет дочерних) от текущего элемента (чаще всего
- * от корня). После этого двигаемся от этого элемента вверх до нахождения элемента
- * большего текущего. Ставим текущий элемент на найденное место, остальные элементы сдвигаем
- * на один элементы выше по куче.
+ * от корня). После этого двигаемся от этого элемента вверх до нахождения элемента, который
+ * больше текущего. Ставим текущий элемент на найденное место, остальные элементы сдвигаем
+ * на один элемент выше по куче.
  * ------------------------------------------------------------------------------------------------
  * <a href="https://youtu.be/0jkXxIUUINk">Ссылка на видео</a>
  * ------------------------------------------------------------------------------------------------
@@ -58,6 +58,22 @@ public class HeapSortBottomUp {
 
         heapSort(array2);
         System.out.println(Arrays.toString(array2));
+        System.out.println();
+
+        // 3 - strArray
+        String[] strArray = { "Hi", "Hey", "Hibernate", "Hello", "H" };
+        System.out.println(Arrays.toString(strArray));
+
+        heapSort(strArray);
+        System.out.println(Arrays.toString(strArray));
+        System.out.println();
+
+        // 4 - strArray2
+        String[] strArray2 = { "Hello", "Hi", "Hell", "he", "HE", "He", "hE", "Hey", "Hibernate", "789", "123", "456" };
+        System.out.println(Arrays.toString(strArray2));
+
+        heapSort(strArray2);
+        System.out.println(Arrays.toString(strArray2));
     }
 
     public static void heapSort(int[] array) {
@@ -75,7 +91,22 @@ public class HeapSortBottomUp {
         }
     }
 
-    private static int searchLeaf(int[] array, int i, int size) {
+    public static void heapSort(String[] array) {
+        // heapify
+        int halfSize = array.length / 2;
+        for (int i = halfSize; i >= 0; i--) {
+            siftDown(array, i, array.length);
+        }
+        // sort
+        int lastIndex = array.length - 1;
+        while (lastIndex > 0) {
+            swap(array, 0, lastIndex);
+            siftDown(array, 0, lastIndex);
+            lastIndex--;
+        }
+    }
+
+    private static int searchLargestLeaf(int[] array, int i, int size) {
         int j = i;
         int leftIndex;
         int rightIndex;
@@ -91,6 +122,30 @@ public class HeapSortBottomUp {
                 j = rightIndex;
             }
         }
+        // если был break (if (rightIndex >= size) == true)
+        if (leftIndex < size) {
+            j = leftIndex;
+        }
+        return j;
+    }
+
+    private static int searchLargestLeaf(String[] array, int i, int size) {
+        int j = i;
+        int leftIndex;
+        int rightIndex;
+        while (true) {
+            leftIndex = 2 * j + 1;
+            rightIndex = 2 * j + 2;
+            if (rightIndex >= size) {
+                break;
+            }
+            if (array[leftIndex].compareTo(array[rightIndex]) > 0) {
+                j = leftIndex;
+            } else {
+                j = rightIndex;
+            }
+        }
+        // если был break (if (rightIndex >= size) == true)
         if (leftIndex < size) {
             j = leftIndex;
         }
@@ -98,24 +153,30 @@ public class HeapSortBottomUp {
     }
 
     private static void siftDown(int[] array, int i, int size) {
-        int j = searchLeaf(array, i, size);
-//        while (j > 0) {
-//            if (array[i] <= array[j]) {
-//                break;
-//            }
-//            j = (j - 1) / 2;
-//        }
-        while (j > 0 && array[i] > array[j]) {
+        int j = searchLargestLeaf(array, i, size);
+        // Двигаемся от j-го элемента вверх до нахождения элемента, который больше текущего.
+        // Мы не зайдём за i-ый элемент, т.к. j-ый дочерний элемент i-го элемента.
+        while (array[i] > array[j]) {
             j = (j - 1) / 2;
         }
-//        while (j > 0) {
-//            if (j <= i) {
-//                break;
-//            }
-//            swap(array, i, j);
-//            j = (j - 1) / 2;
-//        }
-        while (j > 0 && j > i) {
+        // Ставим текущий элемент на найденное место, остальные элементы сдвигаем
+        // на один элемент выше по куче.
+        while (j > i) {
+            swap(array, i, j);
+            j = (j - 1) / 2;
+        }
+    }
+
+    private static void siftDown(String[] array, int i, int size) {
+        int j = searchLargestLeaf(array, i, size);
+        // Двигаемся от j-го элемента вверх до нахождения элемента, который больше текущего.
+        // Мы не зайдём за i-ый элемент, т.к. j-ый дочерний элемент i-го элемента.
+        while (array[i].compareTo(array[j]) > 0) {
+            j = (j - 1) / 2;
+        }
+        // Ставим текущий элемент на найденное место, остальные элементы сдвигаем
+        // на один элемент выше по куче.
+        while (j > i) {
             swap(array, i, j);
             j = (j - 1) / 2;
         }
@@ -123,6 +184,12 @@ public class HeapSortBottomUp {
 
     private static void swap(int[] array, int i, int j) {
         int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    private static void swap(String[] array, int i, int j) {
+        String temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
