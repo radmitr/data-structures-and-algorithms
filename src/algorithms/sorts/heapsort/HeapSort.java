@@ -1,6 +1,7 @@
 package algorithms.sorts.heapsort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -44,6 +45,21 @@ public class HeapSort {
 
         heapSort(array2);
         System.out.println(Arrays.toString(array2));
+
+        // 3 - array3
+        Random random = new Random();
+        int arraySize = 500;
+        int bound = 100;
+        int[] array3 = new int[arraySize];
+
+        for (int i = 0; i < array3.length; i++) {
+            array3[i] = random.nextInt(bound + 1);
+        }
+        System.out.println(Arrays.toString(array3));
+        System.out.println("-----");
+
+        heapSort(array3);
+        System.out.println(Arrays.toString(array3));
     }
 
     public static void heapSort(int[] array) {
